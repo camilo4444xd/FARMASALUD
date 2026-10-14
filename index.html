@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FarmaSalud | Tu salud, más cerca</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f7fbfa;
+    color:#243746;
+}
+
+/* =========================
+   COLORES PRINCIPALES
+========================= */
+:root{
+    --turquesa:#18B7A0;
+    --turquesa-dark:#129984;
+    --azul:#0B2A43;
+    --azul-light:#123b5a;
+    --blanco:#ffffff;
+    --gris:#667781;
+    --fondo:#f7fbfa;
+    --borde:#dcebe8;
+}
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+.top-bar{
+    background:var(--azul);
+    color:white;
+    padding:9px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+}
+
+.top-bar span{
+    opacity:.95;
+}
+
+/* =========================
+   HEADER
+========================= */
+header{
+    background:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 15px rgba(11,42,67,.08);
+}
+
+.header-main{
+    max-width:1250px;
+    margin:auto;
+    padding:16px 25px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    min-width:205px;
+}
+
+.logo-icon{
+    width:58px;
+    height:58px;
+    border-radius:14px;
+    background:white;
+    border:2px solid var(--turquesa);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.logo-icon img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.logo-text h1{
+    font-size:24px;
+    color:var(--azul);
+    font-weight:800;
+}
+
+.logo-text p{
+    font-size:11px;
+    color:var(--turquesa-dark);
+    font-weight:600;
+    margin-top:2px;
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px 18px;
+    border:2px solid var(--borde);
+    border-radius:30px;
+    outline:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.search-box input:focus{
+    border-color:var(--turquesa);
+    box-shadow:0 0 0 3px rgba(24,183,160,.10);
+}
+
+.header-actions{
+    display:flex;
+    gap:10px;
+}
+
+.login-btn,
+.cart-btn{
+    border:none;
+    cursor:pointer;
+    padding:12px 17px;
+    border-radius:10px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.login-btn{
+    background:#edf7f5;
+    color:var(--azul);
+}
+
+.login-btn:hover{
+    background:#dcefea;
+}
+
+.cart-btn{
+    background:var(--turquesa);
+    color:white;
+}
+
+.cart-btn:hover{
+    background:var(--turquesa-dark);
+}
+
+.cart-count{
+    background:white;
+    color:var(--turquesa-dark);
+    border-radius:50%;
+    padding:2px 6px;
+    margin-left:4px;
+    font-size:11px;
+}
+
+/* =========================
+   NAV
+========================= */
+.navbar{
+    border-top:1px solid #edf2f1;
+    background:white;
+}
+
+.navbar-content{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:10px 20px;
+    overflow-x:auto;
+}
+
+.navbar button{
+    border:none;
+    background:transparent;
+    color:var(--azul);
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.navbar button:hover,
+.navbar button.active{
+    background:var(--turquesa);
+    color:white;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    max-width:1250px;
+    margin:30px auto;
+    padding:60px 7%;
+    min-height:420px;
+    border-radius:28px;
+    background:linear-gradient(120deg,#e9faf6,#eef6fb);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    overflow:hidden;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:var(--turquesa);
+    color:white;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:18px;
+}
+
+.hero h2{
+    color:var(--azul);
+    font-size:48px;
+    line-height:1.08;
+    margin-bottom:18px;
+}
+
+.hero p{
+    color:var(--gris);
+    font-size:17px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.hero-button{
+    background:var(--turquesa);
+    color:white;
+    border:none;
+    padding:14px 24px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.hero-button:hover{
+    background:var(--turquesa-dark);
+    transform:translateY(-2px);
+}
+
+.hero-decoration{
+    width:310px;
+    height:240px;
+    border-radius:30px;
+    background:linear-gradient(135deg,var(--azul),var(--turquesa));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    box-shadow:0 20px 40px rgba(11,42,67,.18);
+    flex-shrink:0;
+}
+
+.hero-decoration img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:white;
+    border-radius:20px;
+    padding:15px;
+}
+
+/* =========================
+   CATEGORÍAS
+========================= */
+.categories{
+    max-width:1250px;
+    margin:50px auto;
+    padding:0 25px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    color:var(--azul);
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:var(--gris);
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+}
+
+.category-card{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:16px;
+    padding:20px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--turquesa);
+    box-shadow:0 10px 25px rgba(11,42,67,.08);
+}
+
+.category-icon{
+    width:55px;
+    height:55px;
+    margin:0 auto 12px;
+    background:#e9faf6;
+    color:var(--turquesa-dark);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.category-card h3{
+    color:var(--azul);
+    font-size:14px;
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+.products-section{
+    max-width:1250px;
+    margin:60px auto;
+    padding:0 25px;
+}
+
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.product{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:18px;
+    padding:15px;
+    transition:.25s;
+    overflow:hidden;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(11,42,67,.10);
+    border-color:#b8ded7;
+}
+
+.product-image{
+    height:190px;
+    border-radius:14px;
+    background:#f3faf8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    margin-bottom:15px;
+    border:1px solid #e1efec;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:15px;
+    transition:.25s;
+}
+
+.product:hover .product-image img{
+    transform:scale(1.05);
+}
+
+.product h3{
+    color:var(--azul);
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.product-category{
+    color:var(--turquesa-dark);
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.product-description{
+    color:var(--gris);
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+    margin-bottom:12px;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+}
+
+.product-price{
+    color:var(--azul);
+    font-size:19px;
+    font-weight:800;
+}
+
+.add-cart{
+    background:var(--turquesa);
+    color:white;
+    border:none;
+    padding:10px 13px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.2s;
+}
+
+.add-cart:hover{
+    background:var(--turquesa-dark);
+}
+
+/* =========================
+   PROMOCIONES
+========================= */
+.promotions{
+    max-width:1250px;
+    margin:70px auto;
+    padding:0 25px;
+}
+
+.promo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.promo-card{
+    min-height:190px;
+    border-radius:20px;
+    padding:28px;
+    color:white;
+    background:linear-gradient(135deg,var(--azul),var(--turquesa));
+    position:relative;
+    overflow:hidden;
+}
+
+.promo-card:nth-child(2){
+    background:linear-gradient(135deg,var(--turquesa),#0b8d7b);
+}
+
+.promo-card:nth-child(3){
+    background:linear-gradient(135deg,#123b5a,var(--azul));
+}
+
+.promo-card h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.promo-card p{
+    font-size:14px;
+    line-height:1.5;
+    max-width:270px;
+}
+
+/* =========================
+   COMO FUNCIONA
+========================= */
+.how-section{
+    max-width:1100px;
+    margin:70px auto;
+    padding:0 25px;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.step{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+}
+
+.step-number{
+    width:50px;
+    height:50px;
+    background:var(--turquesa);
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    font-size:20px;
+    font-weight:800;
+}
+
+.step h3{
+    color:var(--azul);
+    margin-bottom:8px;
+}
+
+.step p{
+    color:var(--gris);
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* =========================
+   CARRITO LATERAL
+========================= */
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    z-index:1999;
+    display:none;
+}
+
+.cart-overlay.active{
+    display:block;
+}
+
+.cart-panel{
+    position:fixed;
+    top:0;
+    right:-430px;
+    width:400px;
+    max-width:95%;
+    height:100vh;
+    background:white;
+    z-index:2000;
+    box-shadow:-10px 0 30px rgba(0,0,0,.15);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart-panel.active{
+    right:0;
+}
+
+.cart-header{
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--borde);
+}
+
+.cart-header h2{
+    color:var(--azul);
+}
+
+.close-cart{
+    border:none;
+    background:#edf7f5;
+    color:var(--azul);
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.cart-items{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--borde);
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info h4{
+    color:var(--azul);
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.cart-item-info p{
+    color:var(--turquesa-dark);
+    font-weight:700;
+}
+
+.cart-controls{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:8px;
+}
+
+.cart-controls button{
+    border:none;
+    background:#edf7f5;
+    color:var(--azul);
+    width:27px;
+    height:27px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.delete-item{
+    background:#fff0f0!important;
+    color:#c0392b!important;
+}
+
+.cart-footer{
+    padding:20px;
+    border-top:1px solid var(--borde);
+}
+
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    color:var(--azul);
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.checkout{
+    width:100%;
+    border:none;
+    background:var(--turquesa);
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.checkout:hover{
+    background:var(--turquesa-dark);
+}
+
+.empty-cart{
+    text-align:center;
+    color:var(--gris);
+    padding:40px 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+    background:var(--azul);
+    color:white;
+    margin-top:80px;
+}
+
+.footer-content{
+    max-width:1250px;
+    margin:auto;
+    padding:50px 25px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.footer-logo img{
+    width:55px;
+    height:55px;
+    background:white;
+    border-radius:12px;
+    padding:5px;
+    object-fit:contain;
+}
+
+.footer-content h3{
+    margin-bottom:12px;
+}
+
+.footer-content p,
+.footer-content li{
+    color:#cbd8df;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.footer-content ul{
+    list-style:none;
+}
+
+.footer-bottom{
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding:18px;
+    color:#cbd8df;
+    font-size:13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:1000px){
+    .products-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .hero h2{
+        font-size:38px;
+    }
+}
+
+@media(max-width:750px){
+    .top-bar{
+        display:none;
+    }
+
+    .header-main{
+        flex-wrap:wrap;
+        padding:12px 15px;
+    }
+
+    .logo{
+        min-width:auto;
+    }
+
+    .search-box{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .header-actions{
+        margin-left:auto;
+    }
+
+    .login-btn{
+        display:none;
+    }
+
+    .hero{
+        margin:20px 15px;
+        padding:35px 25px;
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero h2{
+        font-size:34px;
+    }
+
+    .hero-decoration{
+        width:240px;
+        height:190px;
+    }
+
+    .products-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .promo-grid,
+    .steps{
+        grid-template-columns:1fr;
+    }
+
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+    .products-grid{
+        grid-template-columns:1fr;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .logo-text h1{
+        font-size:19px;
+    }
+
+    .logo-icon{
+        width:48px;
+        height:48px;
+    }
+
+    .cart-btn{
+        padding:10px;
+    }
+}
+
+
+/* =========================
+   PROMOCIONES ADMINISTRABLES
+========================= */
+.promo-open-btn{border:1px solid #cde8e3!important;background:#effaf7!important;color:#087e70!important;font-weight:800!important}
+.promo-open-btn:hover{background:#dff5ef!important}
+.promo-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.promo-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:.3px}
+.promo-card h3{line-height:1.25}
+.promo-card .promo-cta{display:inline-flex;margin-top:auto;padding:9px 13px;border-radius:9px;background:#fff;color:#0B2A43;font-size:12px;font-weight:800;text-decoration:none;cursor:pointer;border:0}
+.promo-empty{grid-column:1/-1;background:#fff;border:1px dashed #c7ddd8;border-radius:16px;padding:24px;text-align:center;color:#667781}
+.promo-modal-overlay{position:fixed;inset:0;background:rgba(5,23,38,.7);backdrop-filter:blur(5px);z-index:2500;display:none;align-items:center;justify-content:center;padding:20px}
+.promo-modal-overlay.open{display:flex}
+.promo-modal{width:min(950px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:24px;box-shadow:0 24px 80px rgba(0,0,0,.28);padding:28px;position:relative;animation:promoAppear .22s ease-out}
+@keyframes promoAppear{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+.promo-modal-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px;padding-right:10px}
+.promo-kicker{font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:#129984;margin-bottom:7px}
+.promo-modal-head h2{font-size:clamp(23px,4vw,34px);color:#0B2A43;margin-bottom:8px}
+.promo-modal-head p{font-size:14px;color:#667781;line-height:1.6}
+.promo-close{border:0;background:#edf7f5;color:#0B2A43;width:40px;height:40px;border-radius:50%;font-size:25px;cursor:pointer;flex-shrink:0}
+.promo-modal .promo-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.promo-modal .promo-card{min-height:225px;padding:22px;border-radius:17px}
+.promo-modal-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:20px;padding-top:17px;border-top:1px solid #e7efed;color:#667781;font-size:11px;line-height:1.5}
+.promo-modal-foot button{border:0;background:#18B7A0;color:#fff;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;white-space:nowrap}
+.admin-footer-link{display:inline-block;margin-top:14px;color:#cbd8df;text-decoration:none;font-size:12px;border-bottom:1px dotted #8ca4b0;padding-bottom:2px}
+.admin-footer-link:hover{color:#fff}
+@media(max-width:750px){.promo-modal{padding:21px;border-radius:18px}.promo-modal .promo-grid{grid-template-columns:1fr}.promo-modal .promo-card{min-height:0}.promo-modal-foot{align-items:flex-start;flex-direction:column}.promo-modal-foot button{width:100%}}
+
+/* Promociones visuales que se pueden comprar */
+.promo-card.promo-card-image{background:#fff!important;color:var(--azul);padding:0;min-height:0;border:1px solid #dcebe8;box-shadow:0 9px 28px rgba(11,42,67,.08);gap:0}
+.promo-card-image .promo-photo{width:100%;height:190px;background:#edf7f5;overflow:hidden;position:relative}
+.promo-card-image .promo-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.promo-card-image .promo-photo .discount-chip{position:absolute;top:12px;right:12px;background:#e84b4b;color:#fff;font-size:12px;font-weight:900;padding:7px 10px;border-radius:9px;box-shadow:0 5px 12px #00152222}
+.promo-card-image .promo-body{padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex:1;width:100%}
+.promo-card-image .promo-badge{background:#e9f8f4;border:1px solid #cbece4;color:#07816f}
+.promo-card-image h3{font-size:20px;color:var(--azul);margin:0}
+.promo-card-image p{color:#667781;font-size:13px;line-height:1.55;max-width:none;margin:0}
+.promo-card-image .promo-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:2px}
+.promo-card-image .promo-price{font-size:23px;font-weight:900;color:#118875}
+.promo-card-image .promo-old-price{font-size:13px;color:#87969d;text-decoration:line-through}
+.promo-card-image .promo-cta{width:100%;text-align:center;justify-content:center;background:var(--turquesa);color:#fff;border-radius:10px;padding:12px 15px}
+.promo-card-image .promo-cta:hover{background:var(--turquesa-dark)}
+.promo-modal .promo-card-image .promo-photo{height:165px}
+.promo-modal .promo-card-image .promo-body{padding:16px}
+.promo-modal .promo-card-image h3{font-size:18px}
+.promo-modal .promo-card-image .promo-price{font-size:21px}
+.cart-thumb{width:58px;height:58px;object-fit:cover;border:1px solid var(--borde);border-radius:10px;background:#f2faf8;flex-shrink:0}
+@media(max-width:750px){.promo-card-image .promo-photo{height:175px}.promo-card-image .promo-body{padding:16px}}
+
+
+
+/* =========================
+   IDENTIDAD, VALORES Y FUNDADORES
+========================= */
+.footer-content a{color:inherit;text-decoration:none;opacity:.9}
+.footer-content a:hover{color:#18B7A0;text-decoration:underline}
+.about-section{padding:76px 5%;background:linear-gradient(180deg,#f3faf8 0%,#fff 100%);scroll-margin-top:25px}
+.about-wrap{max-width:1180px;margin:0 auto}
+.about-kicker{display:inline-flex;align-items:center;gap:8px;background:#e4f7f2;border:1px solid #caeee5;border-radius:100px;padding:8px 13px;color:#107d6e;font-size:11px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;margin-bottom:15px}
+.about-intro{text-align:center;max-width:850px;margin:0 auto 34px}
+.about-intro h2{font-size:clamp(28px,4vw,40px);line-height:1.16;color:#0B2A43;margin:0 0 14px}
+.about-intro p{font-size:15px;line-height:1.8;color:#607580;margin:0 auto;max-width:760px}
+.about-mission-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0 42px}
+.about-card{background:#fff;border:1px solid #dcece8;border-radius:18px;padding:24px;box-shadow:0 10px 28px rgba(11,42,67,.045)}
+.about-card-icon{width:47px;height:47px;border-radius:14px;background:#e9f8f4;display:grid;place-items:center;font-size:23px;margin-bottom:15px}
+.about-card h3{font-size:18px;color:#0B2A43;margin:0 0 9px}
+.about-card p{font-size:13px;line-height:1.75;color:#657985;margin:0}
+.about-subtitle{text-align:center;margin:0 auto 20px;max-width:760px}
+.about-subtitle h3{font-size:25px;color:#0B2A43;margin:0 0 8px}
+.about-subtitle p{font-size:13px;color:#657985;line-height:1.7;margin:0}
+.values-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:42px}
+.value-item{display:flex;align-items:flex-start;gap:12px;border:1px solid #e0eeeb;background:#fff;border-radius:13px;padding:17px}
+.value-mark{flex-shrink:0;width:34px;height:34px;background:#e7f8f3;color:#0e8b79;border-radius:10px;display:grid;place-items:center;font-size:17px;font-weight:900}
+.value-item h4{font-size:14px;color:#0B2A43;margin:1px 0 5px}
+.value-item p{font-size:12px;line-height:1.65;color:#657985;margin:0}
+.founders-block{padding-top:9px;scroll-margin-top:24px}
+.founders-head{text-align:center;margin:0 auto 25px;max-width:780px}
+.founders-head h3{font-size:clamp(25px,3vw,32px);color:#0B2A43;margin:0 0 9px}
+.founders-head p{font-size:13px;line-height:1.7;color:#657985;margin:0}
+.founders-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.founder-card{min-width:0;background:#fff;border:1px solid #dcece8;border-radius:18px;overflow:hidden;box-shadow:0 8px 26px rgba(11,42,67,.055);text-align:left}
+.founder-photo{height:205px;background:linear-gradient(135deg,#e8f8f4,#eef5f8);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#118a79;font-size:45px}
+.founder-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.founder-info{padding:19px}
+.founder-role{display:inline-block;border-radius:100px;background:#e9f8f4;color:#087d6c;padding:6px 10px;font-size:10px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px;max-width:100%;overflow-wrap:anywhere}
+.founder-info h4{color:#0B2A43;font-size:18px;margin:0 0 8px;overflow-wrap:anywhere}
+.founder-info p{font-size:12px;line-height:1.75;color:#657985;margin:0;overflow-wrap:anywhere}
+.founder-placeholder-note{font-size:10px;line-height:1.5;color:#829198;margin-top:11px;padding-top:10px;border-top:1px solid #edf3f1}
+@media(max-width:900px){.founders-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-mission-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.about-section{padding:52px 5%}.founders-grid,.values-grid{grid-template-columns:1fr}.founder-photo{height:230px}.about-card{padding:19px}}
+
+
+
+/* =========================
+   FILTROS DEL CATÁLOGO Y MICROINTERACCIONES
+========================= */
+.product-toolbar{display:grid;grid-template-columns:repeat(3,minmax(145px,1fr)) auto;gap:13px;align-items:end;margin:0 0 22px;padding:17px;background:rgba(255,255,255,.88);border:1px solid var(--borde);border-radius:18px;box-shadow:0 10px 28px rgba(11,42,67,.045)}
+.filter-group{display:grid;gap:7px;min-width:0}
+.filter-group label{font-size:11px;color:#607580;font-weight:800;letter-spacing:.35px;text-transform:uppercase}
+.catalog-filter{width:100%;min-width:0;padding:12px 13px;border-radius:11px;border:1px solid #d5e6e2;background:#fff;color:var(--azul);font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s}
+.catalog-filter:focus{border-color:var(--turquesa);box-shadow:0 0 0 4px rgba(24,183,160,.13)}
+.filter-reset{height:42px;border:1px solid #cfe7e1;border-radius:11px;padding:0 14px;background:#eaf8f4;color:#087d6c;font-weight:800;cursor:pointer;white-space:nowrap;transition:transform .2s,background .2s}
+.filter-reset:hover{background:#d9f3ec;transform:translateY(-2px)}
+.filter-results{grid-column:1/-1;color:var(--gris);font-size:12px;margin-top:-2px}
+.product{animation:productRise .42s cubic-bezier(.2,.75,.25,1) both;transform-origin:center bottom}
+.product:nth-child(2n){animation-delay:.035s}.product:nth-child(3n){animation-delay:.07s}.product:nth-child(4n){animation-delay:.1s}
+.product:hover{filter:drop-shadow(0 14px 17px rgba(11,42,67,.07))}
+.product-image img{filter:saturate(1.02);transition:transform .35s cubic-bezier(.2,.75,.25,1),filter .35s}
+.product:hover .product-image img{filter:saturate(1.13) contrast(1.02);transform:scale(1.075) rotate(-.5deg)}
+.category-card,.step,.about-card,.value-item,.founder-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}
+.category-card:hover,.step:hover,.about-card:hover,.value-item:hover,.founder-card:hover{transform:translateY(-4px);box-shadow:0 15px 32px rgba(11,42,67,.09);border-color:#b6e0d7}
+.hero{position:relative;isolation:isolate;box-shadow:0 14px 36px rgba(11,42,67,.045);animation:heroEnter .7s ease both}
+.hero:before{content:"";position:absolute;z-index:-1;width:280px;height:280px;border:1px solid rgba(24,183,160,.14);border-radius:50%;right:15%;top:-135px;box-shadow:0 0 0 28px rgba(24,183,160,.035),0 0 0 58px rgba(24,183,160,.025)}
+.hero-tag{box-shadow:0 8px 18px rgba(24,183,160,.2)}
+.hero-button,.add-cart,.checkout,.cart-btn{transition:transform .2s,box-shadow .2s,background .2s}
+.hero-button:hover,.add-cart:hover,.checkout:hover,.cart-btn:hover{box-shadow:0 8px 18px rgba(18,153,132,.22);transform:translateY(-2px)}
+.section-title h2{letter-spacing:-.5px}
+.section-title h2:after{content:"";display:block;width:42px;height:3px;margin:11px auto 0;border-radius:8px;background:linear-gradient(90deg,var(--turquesa),#9adbd0)}
+@keyframes productRise{from{opacity:0;transform:translateY(13px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes heroEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* =========================
+   ASISTENTE VIRTUAL
+========================= */
+.assistant-launcher{position:fixed;right:22px;bottom:22px;z-index:3000;display:flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:10px 17px 10px 10px;background:linear-gradient(135deg,#0B2A43,#12635f);color:#fff;box-shadow:0 12px 34px rgba(11,42,67,.28);cursor:pointer;font-weight:800;transition:transform .22s,box-shadow .22s}
+.assistant-launcher:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(11,42,67,.34)}
+.assistant-launcher-icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#18B7A0,#7ce0cd);color:#073b42;font-size:22px}
+.assistant-launcher-text{font-size:13px;white-space:nowrap}
+.assistant-online-dot{width:8px;height:8px;background:#69e2a9;border-radius:50%;box-shadow:0 0 0 4px rgba(105,226,169,.14)}
+.assistant-panel{position:fixed;right:22px;bottom:88px;width:min(390px,calc(100vw - 28px));height:min(610px,calc(100vh - 130px));z-index:3001;display:flex;flex-direction:column;background:#fff;border:1px solid #dcebe8;border-radius:22px;overflow:hidden;box-shadow:0 24px 75px rgba(11,42,67,.25);animation:assistantAppear .24s ease-out}
+.assistant-panel[hidden]{display:none!important}
+@keyframes assistantAppear{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.assistant-head{flex-shrink:0;display:flex;gap:11px;align-items:center;padding:17px;background:linear-gradient(125deg,#0B2A43,#0d665e);color:#fff}
+.assistant-avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#18B7A0,#9af0dc);color:#08374b;font-size:22px;font-weight:900;box-shadow:0 5px 14px #0015222b}
+.assistant-head-copy{display:grid;gap:4px;min-width:0;flex:1}.assistant-head-copy strong{font-size:13px}.assistant-head-copy span{font-size:10px;color:#cfebe6}
+.assistant-close{width:32px;height:32px;flex-shrink:0;border:1px solid #ffffff45;background:#ffffff17;color:#fff;border-radius:50%;font-size:23px;cursor:pointer}
+.assistant-messages{flex:1;overflow:auto;padding:16px 14px 12px;background:linear-gradient(180deg,#f5fbf9,#fff);display:flex;flex-direction:column;gap:11px}
+.assistant-message{max-width:94%;border-radius:15px;padding:12px 13px;font-size:12px;line-height:1.65;overflow-wrap:anywhere}
+.assistant-message p{margin:0 0 8px}.assistant-message p:last-child{margin-bottom:0}
+.assistant-bot-message{align-self:flex-start;background:#fff;border:1px solid #dcebe8;color:#2a4757;border-top-left-radius:5px;box-shadow:0 4px 12px #0b2a4308}
+.assistant-user-message{align-self:flex-end;background:#dff7f0;border:1px solid #c4eee2;color:#0b5148;border-top-right-radius:5px}
+.assistant-disclaimer{border-top:1px solid #e8f0ee;padding-top:8px;color:#6b7d85;font-size:10px!important}
+.assistant-message-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.assistant-action-button{border:1px solid #bde5dc;background:#effaf7;color:#087d6c;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:800;cursor:pointer;text-align:left}
+.assistant-action-button:hover{background:#d8f4eb}
+.assistant-quick-actions{display:flex;gap:7px;overflow:auto;padding:10px 12px;border-top:1px solid #e8f0ee;background:#fff;scrollbar-width:thin}
+.assistant-quick-actions button{flex-shrink:0;background:#f0faf7;border:1px solid #d0ebe4;color:#146f62;border-radius:999px;padding:8px 10px;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap}
+.assistant-quick-actions button:hover{background:#dcf5ed}
+.assistant-form{display:flex;gap:8px;padding:11px 12px;border-top:1px solid #e5efec;background:#fff}
+.assistant-form input{min-width:0;flex:1;padding:12px 13px;border:1px solid #d5e5e1;border-radius:12px;outline:none;font-size:12px;color:#0B2A43}
+.assistant-form input:focus{border-color:#18B7A0;box-shadow:0 0 0 3px #18b7a01e}
+.assistant-form button{width:43px;border:0;border-radius:12px;background:#18B7A0;color:#fff;font-size:19px;font-weight:900;cursor:pointer}.assistant-form button:hover{background:#129984}
+.assistant-footnote{padding:0 13px 11px;text-align:center;color:#85939a;font-size:9px;background:#fff}
+@media(max-width:750px){.product-toolbar{grid-template-columns:1fr 1fr;padding:13px}.filter-sort-group{grid-column:auto}.filter-reset{width:100%;white-space:normal}.assistant-launcher{right:13px;bottom:13px}.assistant-panel{right:10px;bottom:76px;width:calc(100vw - 20px);height:min(600px,calc(100vh - 98px))}.hero:before{right:-80px}}
+@media(max-width:460px){.product-toolbar{grid-template-columns:1fr}.filter-results{grid-column:1}.filter-reset{height:auto;min-height:42px}.assistant-launcher-text{display:none}.assistant-launcher{padding:8px}.assistant-launcher-icon{width:43px;height:43px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+.recipe-product-badge{display:inline-flex;margin:8px 0 3px;padding:6px 9px;background:#fff6e4;color:#825d19;border:1px solid #f1dfb6;border-radius:8px;font-size:11px;font-weight:700}
+.product-no-image{font-size:12px;color:#82969c;text-align:center;padding:15px}
+.recipe-modal-overlay{position:fixed;inset:0;background:rgba(4,28,42,.68);z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}
+.recipe-modal-overlay[hidden]{display:none!important}.recipe-modal{width:min(520px,100%);background:#fff;border:1px solid #d8e8e4;border-radius:20px;padding:25px;box-shadow:0 24px 80px #001a2a55}.recipe-modal h2{font-size:23px;color:var(--azul);margin-bottom:8px}.recipe-modal p{color:#667781;font-size:13px;line-height:1.65;margin-bottom:14px}.recipe-modal input[type=file]{width:100%;padding:12px;border:1px solid #dcebe8;border-radius:10px;margin:3px 0 14px;background:#f8fcfb}.recipe-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.recipe-modal-actions button{padding:12px 15px;border-radius:10px;border:0;font-size:13px;font-weight:700}.recipe-modal-actions .recipe-submit{background:var(--turquesa);color:white}.recipe-modal-actions .recipe-cancel{background:#edf5f3;color:#294f60}.recipe-privacy-note{font-size:11px!important;background:#fff7e6;border:1px solid #f1dfb6;border-radius:9px;padding:10px}
+
+</style>
+</head>
+
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="top-bar">
+    <span>💚 Atención y confianza para tu salud</span>
+    <span>📞 Servicio al cliente: 943 032 119</span>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="header-main">
+
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <img src="img/logo.png" alt="Logo FarmaSalud">
+            </div>
+
+            <div class="logo-text">
+                <h1>FarmaSalud</h1>
+                <p>Tu salud, más cerca</p>
+            </div>
+        </a>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="¿Qué estás buscando?"
+            >
+        </div>
+
+        <div class="header-actions">
+            <button class="login-btn" onclick="irLogin()">
+                Iniciar sesión
+            </button>
+
+            <button class="cart-btn" onclick="abrirCarrito()">
+                🛒 Carrito
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="navbar-content">
+
+            <button class="active" onclick="filtrar('todos',this)">
+                Todos
+            </button>
+
+            <button onclick="filtrar('medicamentos',this)">
+                Medicamentos
+            </button>
+
+            <button onclick="filtrar('vitaminas',this)">
+                Vitaminas
+            </button>
+
+            <button onclick="filtrar('cuidado',this)">
+                Cuidado personal
+            </button>
+
+            <button onclick="filtrar('bebes',this)">
+                Bebés
+            </button>
+
+            <button onclick="filtrar('primeros',this)">
+                Primeros auxilios
+            </button>
+
+            <button class="promo-open-btn" onclick="abrirPromociones(false)">
+                🎁 Promociones
+            </button>
+
+            <button onclick="filtrar('proteccion',this)">
+                Protección
+            </button>
+
+            <button onclick="irNosotros()">
+                Nosotros
+            </button>
+
+        </div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            FARMA SALUD
+        </span>
+
+        <h2>
+            Encuentra lo que necesitas más fácil.
+        </h2>
+
+        <p>
+            Compra productos para el cuidado de tu salud de manera
+            rápida, sencilla y segura.
+        </p>
+
+        <button class="hero-button" onclick="irProductos()">
+            Ver productos
+        </button>
+
+    </div>
+
+    <div class="hero-decoration">
+        <img src="img/logo.png" alt="FarmaSalud">
+    </div>
+
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="categories">
+
+    <div class="section-title">
+        <h2>Compra por categoría</h2>
+        <p>Encuentra rápidamente lo que necesitas</p>
+    </div>
+
+    <div class="category-grid">
+
+        <div class="category-card" onclick="filtrar('medicamentos')">
+            <div class="category-icon">💊</div>
+            <h3>Medicamentos</h3>
+        </div>
+
+        <div class="category-card" onclick="filtrar('vitaminas')">
+            <div class="category-icon">🍊</div>
+            <h3>Vitaminas</h3>
+        </div>
+
+        <div class="category-card" onclick="filtrar('cuidado')">
+            <div class="category-icon">🧴</div>
+            <h3>Cuidado personal</h3>
+        </div>
+
+        <div class="category-card" onclick="filtrar('bebes')">
+            <div class="category-icon">👶</div>
+            <h3>Bebés</h3>
+        </div>
+
+        <div class="category-card" onclick="filtrar('primeros')">
+            <div class="category-icon">🩹</div>
+            <h3>Primeros auxilios</h3>
+        </div>
+
+        <div class="category-card" onclick="filtrar('proteccion')">
+            <div class="category-icon">🛡️</div>
+            <h3>Protección</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="products-section" id="productos">
+
+    <div class="section-title">
+        <h2>Productos destacados</h2>
+        <p>Elige los productos que necesitas</p>
+    </div>
+
+    <div class="product-toolbar" aria-label="Filtros del catálogo">
+        <div class="filter-group">
+            <label for="categoryFilter">Categoría</label>
+            <select id="categoryFilter" class="catalog-filter">
+                <option value="todos">Todas las categorías</option>
+                <option value="medicamentos">Medicamentos</option>
+                <option value="vitaminas">Vitaminas</option>
+                <option value="cuidado">Cuidado personal</option>
+                <option value="bebes">Bebés</option>
+                <option value="primeros">Primeros auxilios</option>
+                <option value="proteccion">Protección</option>
+                <option value="otros">Otros</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="priceFilter">Precio máximo</label>
+            <select id="priceFilter" class="catalog-filter">
+                <option value="todos">Cualquier precio</option>
+                <option value="15">Hasta S/ 15</option>
+                <option value="30">Hasta S/ 30</option>
+                <option value="50">Hasta S/ 50</option>
+            </select>
+        </div>
+        <div class="filter-group filter-sort-group">
+            <label for="sortFilter">Ordenar por</label>
+            <select id="sortFilter" class="catalog-filter">
+                <option value="recomendados">Recomendados</option>
+                <option value="precio-menor">Menor precio</option>
+                <option value="precio-mayor">Mayor precio</option>
+                <option value="nombre">Nombre A–Z</option>
+            </select>
+        </div>
+        <button type="button" class="filter-reset" id="resetFilters">Restablecer filtros</button>
+        <p class="filter-results" id="filterResults" aria-live="polite">Mostrando productos</p>
+    </div>
+
+    <div class="products-grid" id="productsContainer"></div>
+
+</section>
+
+<!-- PROMOCIONES: el administrador puede modificar estas tarjetas desde admin.html -->
+<section class="promotions" id="promociones">
+    <div class="section-title">
+        <h2>Promociones y novedades</h2>
+        <p>Información y beneficios destacados de FarmaSalud</p>
+    </div>
+    <div class="promo-grid" id="promoCardsContainer">
+        <div class="promo-empty">Cargando promociones…</div>
+    </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how-section">
+
+    <div class="section-title">
+        <h2>¿Cómo funciona?</h2>
+        <p>Comprar en FarmaSalud es muy sencillo</p>
+    </div>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Elige</h3>
+            <p>
+                Busca el producto que necesitas y agrégalo al carrito.
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Confirma</h3>
+            <p>
+                Revisa tus productos y continúa con tu pedido.
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Recibe</h3>
+            <p>
+                Realiza el seguimiento de tu pedido hasta recibirlo.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUIÉNES SOMOS: propósito, misión, visión, valores y principios -->
+<section class="about-section" id="nosotros">
+  <div class="about-wrap">
+    <div class="about-intro">
+      <span class="about-kicker">💚 Quiénes somos</span>
+      <h2>Tu salud, más cerca. Nuestra razón de ser.</h2>
+      <p>FarmaSalud nace como una propuesta digital que busca hacer más sencilla la búsqueda de productos para el cuidado de la salud. Queremos acercar opciones, ofrecer información clara y acompañar a las personas con un trato responsable y humano.</p>
+    </div>
+
+    <div class="about-mission-grid">
+      <article class="about-card">
+        <div class="about-card-icon">🧭</div>
+        <h3>¿Qué hacemos?</h3>
+        <p>Organizamos productos de cuidado y bienestar en un espacio digital fácil de explorar, con categorías, promociones y seguimiento de pedidos para ayudar a que las personas encuentren lo que buscan con mayor comodidad.</p>
+      </article>
+      <article class="about-card">
+        <div class="about-card-icon">🤝</div>
+        <h3>¿Por qué lo hacemos?</h3>
+        <p>Creemos que buscar productos para el cuidado de la salud debe ser una experiencia más clara, accesible y cercana. Trabajamos para reducir complicaciones y poner a las personas en el centro de cada decisión.</p>
+      </article>
+      <article class="about-card">
+        <div class="about-card-icon">🌱</div>
+        <h3>Nuestra misión y visión</h3>
+        <p><strong>Misión:</strong> facilitar la búsqueda de productos de salud con una experiencia digital sencilla, transparente y orientada a las personas.<br><br><strong>Visión:</strong> crecer como una plataforma de confianza reconocida por su servicio cercano, responsabilidad y mejora continua.</p>
+      </article>
+    </div>
+
+    <div class="about-subtitle">
+      <h3>Los valores que nos representan</h3>
+      <p>Son la guía de cómo queremos trabajar, atender y tomar decisiones cada día.</p>
+    </div>
+    <div class="values-grid">
+      <article class="value-item"><div class="value-mark">♡</div><div><h4>Personas primero</h4><p>Escuchamos necesidades y buscamos ofrecer una experiencia respetuosa, amable y útil.</p></div></article>
+      <article class="value-item"><div class="value-mark">✓</div><div><h4>Confianza y transparencia</h4><p>Presentamos la información y los precios de forma clara, sin promesas engañosas.</p></div></article>
+      <article class="value-item"><div class="value-mark">⚖</div><div><h4>Responsabilidad</h4><p>Entendemos que el cuidado de la salud merece prudencia y decisiones informadas.</p></div></article>
+      <article class="value-item"><div class="value-mark">◎</div><div><h4>Cercanía</h4><p>Buscamos que la tecnología haga más fácil el acceso y no una experiencia más complicada.</p></div></article>
+      <article class="value-item"><div class="value-mark">✦</div><div><h4>Compromiso</h4><p>Atendemos las dudas y oportunidades de mejora con seriedad y disposición a aprender.</p></div></article>
+      <article class="value-item"><div class="value-mark">↗</div><div><h4>Mejora continua</h4><p>Revisamos la experiencia para hacerla más clara, práctica y accesible.</p></div></article>
+    </div>
+
+    <div class="about-subtitle">
+      <h3>Nuestros principios de trabajo</h3>
+      <p>Además de lo que valoramos, definimos pautas concretas para actuar con coherencia.</p>
+    </div>
+    <div class="values-grid">
+      <article class="value-item"><div class="value-mark">1</div><div><h4>Información clara</h4><p>Explicamos las condiciones de compra, los precios y el estado de los pedidos de forma comprensible.</p></div></article>
+      <article class="value-item"><div class="value-mark">2</div><div><h4>Respeto a la privacidad</h4><p>Tratamos los datos personales con cuidado y solo deben utilizarse para los fines necesarios del servicio.</p></div></article>
+      <article class="value-item"><div class="value-mark">3</div><div><h4>Uso responsable</h4><p>La plataforma informa sobre productos, pero no sustituye el consejo de un profesional de salud.</p></div></article>
+    </div>
+
+    <div class="founders-block" id="fundadores">
+      <div class="founders-head">
+        <span class="about-kicker">Las personas detrás de la idea</span>
+        <h3>Conoce a nuestros seis fundadores</h3>
+        <p>Cada persona aporta una perspectiva y un compromiso para construir FarmaSalud. Estamos completando estos perfiles; pronto podrás conocer sus nombres, responsabilidades y su historia.</p>
+      </div>
+      <div class="founders-grid" id="foundersGrid" aria-live="polite">
+        <article class="founder-card"><div class="founder-photo">👤</div><div class="founder-info"><span class="founder-role">Perfil por completar</span><h4>Fundador/a 1</h4><p>Pronto compartiremos una breve presentación.</p></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTANA INICIAL DE PROMOCIONES -->
+<div class="promo-modal-overlay" id="promoModalOverlay" role="dialog" aria-modal="true" aria-labelledby="promoModalTitle" onclick="cerrarPromocionesDesdeFondo(event)">
+  <div class="promo-modal">
+    <div class="promo-modal-head">
+      <div>
+        <div class="promo-kicker">FarmaSalud · novedades</div>
+        <h2 id="promoModalTitle">Promociones para ti</h2>
+        <p>Revisa las novedades que hemos preparado antes de explorar el catálogo.</p>
+      </div>
+      <button class="promo-close" type="button" aria-label="Cerrar promociones" onclick="cerrarPromociones()">×</button>
+    </div>
+    <div class="promo-grid" id="promoModalCards">
+      <div class="promo-empty">Cargando promociones…</div>
+    </div>
+    <div class="promo-modal-foot">
+      <span>Promociones configurables desde el panel local de administrador. Consulta disponibilidad antes de comprar.</span>
+      <button type="button" onclick="cerrarPromociones();irProductos();">Explorar productos</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARRITO -->
+<div class="cart-overlay" id="cartOverlay" onclick="cerrarCarrito()"></div>
+
+<aside class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+        <h2>Mi carrito</h2>
+
+        <button class="close-cart" onclick="cerrarCarrito()">
+            ×
+        </button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">S/ 0.00</span>
+        </div>
+
+        <button class="checkout" onclick="continuarCarrito()">
+            Continuar compra
+        </button>
+
+    </div>
+
+</aside>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="FarmaSalud">
+
+                <div>
+                    <h2>FarmaSalud</h2>
+                    <p>Tu salud, más cerca</p>
+                </div>
+            </div>
+
+            <p>
+                Una propuesta digital para facilitar la búsqueda
+                y compra de productos de salud.
+            </p>
+        </div>
+
+        <div>
+            <h3>FarmaSalud</h3>
+
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#promociones">Promociones</a></li>
+                <li><a href="#nosotros">Quiénes somos</a></li>
+                <li><a href="#fundadores">Fundadores</a></li>
+                <li><a href="seguimiento.html">Seguimiento</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contacto</h3>
+
+            <p>📞 943 032 119</p>
+            <p>📧 contacto@farmasalud.com</p>
+            <p>📍 Perú</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 FarmaSalud. Todos los derechos reservados.<br>
+        <a class="admin-footer-link" href="admin.html">Acceso para administradores</a>
+    </div>
+
+</footer>
+
+<!-- ASISTENTE VIRTUAL LOCAL: ayuda con navegación y uso de la tienda -->
+<button class="assistant-launcher" id="assistantLauncher" type="button" aria-label="Abrir asistente virtual de FarmaSalud" aria-expanded="false">
+  <span class="assistant-launcher-icon" aria-hidden="true">✦</span>
+  <span class="assistant-launcher-text">¿Te ayudo?</span>
+  <span class="assistant-online-dot" aria-hidden="true"></span>
+</button>
+<section class="assistant-panel" id="assistantPanel" aria-label="Asistente virtual FarmaSalud" hidden>
+  <div class="assistant-head">
+    <div class="assistant-avatar" aria-hidden="true">F</div>
+    <div class="assistant-head-copy"><strong>Farma · Asistente virtual</strong><span>Ayuda rápida para usar la tienda</span></div>
+    <button type="button" class="assistant-close" id="assistantClose" aria-label="Cerrar asistente">×</button>
+  </div>
+  <div class="assistant-messages" id="assistantMessages" aria-live="polite" aria-relevant="additions">
+    <div class="assistant-message assistant-bot-message"><p>¡Hola! Soy Farma 😊 Puedo ayudarte a buscar productos del catálogo, ver promociones, usar el carrito o encontrar el seguimiento de un pedido.</p><p class="assistant-disclaimer">No doy diagnósticos ni recomiendo medicamentos o dosis. Para eso, consulta a un profesional de salud.</p></div>
+  </div>
+  <div class="assistant-quick-actions" aria-label="Ayuda rápida">
+    <button type="button" data-assistant-action="products">🔎 Buscar productos</button>
+    <button type="button" data-assistant-action="promotions">🎁 Promociones</button>
+    <button type="button" data-assistant-action="cart">🛒 Mi carrito</button>
+    <button type="button" data-assistant-action="tracking">📦 Seguir pedido</button>
+    <button type="button" data-assistant-action="about">💚 Quiénes somos</button>
+  </div>
+  <form class="assistant-form" id="assistantForm">
+    <input id="assistantInput" type="text" maxlength="260" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Escribe tu pregunta al asistente" required>
+    <button type="submit" aria-label="Enviar mensaje">➤</button>
+  </form>
+  <div class="assistant-footnote">Asistente automático de demostración · No sustituye la orientación profesional.</div>
+</section>
+
+
+<div class="recipe-modal-overlay" id="recipeRequiredModal" hidden>
+  <section class="recipe-modal" role="dialog" aria-modal="true" aria-labelledby="recipeModalTitle">
+    <h2 id="recipeModalTitle">📄 Este producto requiere receta médica</h2>
+    <p id="recipeModalDescription">Antes de agregar este producto al carrito, adjunta una imagen legible de la receta correspondiente.</p>
+    <form id="recipeUploadForm"><label for="requiredRecipeFile"><strong>Imagen de la receta (JPG, PNG o WEBP)</strong></label><input id="requiredRecipeFile" type="file" accept="image/jpeg,image/png,image/webp" required><p class="recipe-privacy-note">Prototipo local: la imagen se guarda en el navegador que estás utilizando. No cargues recetas ni datos personales reales en esta demostración.</p><div class="recipe-modal-actions"><button class="recipe-submit" type="submit">Guardar receta y agregar producto</button><button class="recipe-cancel" id="cancelRecipeUpload" type="button">Cancelar</button></div></form>
+  </section>
+</div>
+
+<script>
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+const productosBase = [
+
+    {
+        id:1,
+        nombre:"Paracetamol 500 mg",
+        categoria:"medicamentos",
+        precio:8.90,
+        descripcion:"Analgésico y antipirético.",
+        receta:false,
+        imagen:"paracetamol.png"
+    },
+
+    {
+        id:2,
+        nombre:"Ibuprofeno 400 mg",
+        categoria:"medicamentos",
+        precio:12.90,
+        descripcion:"Medicamento de venta libre según presentación y normativa aplicable.",
+        receta:false,
+        imagen:"ibuprofeno.png"
+    },
+
+    {
+        id:3,
+        nombre:"Loratadina 10 mg",
+        categoria:"medicamentos",
+        precio:10.50,
+        descripcion:"Antihistamínico.",
+        receta:false,
+        imagen:"loratadina.png"
+    },
+
+    {
+        id:4,
+        nombre:"Omeprazol 20 mg",
+        categoria:"medicamentos",
+        precio:13.90,
+        descripcion:"Medicamento para determinadas condiciones digestivas.",
+        receta:false,
+        imagen:"omeprazol.png"
+    },
+
+    {
+        id:5,
+        nombre:"Medicamento sujeto a receta",
+        categoria:"medicamentos",
+        precio:35.90,
+        descripcion:"Producto de demostración para el flujo con receta médica.",
+        receta:true,
+        imagen:"medicamento-receta.png"
+    },
+
+    {
+        id:6,
+        nombre:"Antibiótico — presentación referencial",
+        categoria:"medicamentos",
+        precio:28.90,
+        descripcion:"Ejemplo de producto que requiere evaluación y receta.",
+        receta:true,
+        imagen:"antibiotico.png"
+    },
+
+    {
+        id:7,
+        nombre:"Vitamina C",
+        categoria:"vitaminas",
+        precio:18.90,
+        descripcion:"Suplemento de vitamina C.",
+        receta:false,
+        imagen:"vitamina-c.png"
+    },
+
+    {
+        id:8,
+        nombre:"Multivitamínico",
+        categoria:"vitaminas",
+        precio:32.90,
+        descripcion:"Complemento multivitamínico.",
+        receta:false,
+        imagen:"multivitaminico.png"
+    },
+
+    {
+        id:9,
+        nombre:"Zinc",
+        categoria:"vitaminas",
+        precio:22.90,
+        descripcion:"Suplemento de zinc.",
+        receta:false,
+        imagen:"zinc.png"
+    },
+
+    {
+        id:10,
+        nombre:"Omega 3",
+        categoria:"vitaminas",
+        precio:39.90,
+        descripcion:"Complemento alimenticio.",
+        receta:false,
+        imagen:"omega-3.png"
+    },
+
+    {
+        id:11,
+        nombre:"Protector solar FPS 50+",
+        categoria:"cuidado",
+        precio:45.90,
+        descripcion:"Protector solar para uso diario.",
+        receta:false,
+        imagen:"protector-solar.png"
+    },
+
+    {
+        id:12,
+        nombre:"Gel limpiador facial",
+        categoria:"cuidado",
+        precio:34.90,
+        descripcion:"Producto de higiene facial.",
+        receta:false,
+        imagen:"gel-facial.png"
+    },
+
+    {
+        id:13,
+        nombre:"Crema hidratante",
+        categoria:"cuidado",
+        precio:29.90,
+        descripcion:"Hidratante para cuidado de la piel.",
+        receta:false,
+        imagen:"crema-hidratante.png"
+    },
+
+    {
+        id:14,
+        nombre:"Shampoo",
+        categoria:"cuidado",
+        precio:24.90,
+        descripcion:"Producto para higiene capilar.",
+        receta:false,
+        imagen:"shampoo.png"
+    },
+
+    {
+        id:15,
+        nombre:"Pañales para bebé",
+        categoria:"bebes",
+        precio:39.90,
+        descripcion:"Pañales desechables.",
+        receta:false,
+        imagen:"panales.png"
+    },
+
+    {
+        id:16,
+        nombre:"Toallitas húmedas",
+        categoria:"bebes",
+        precio:12.90,
+        descripcion:"Toallitas para higiene del bebé.",
+        receta:false,
+        imagen:"toallitas.png"
+    },
+
+    {
+        id:17,
+        nombre:"Termómetro digital",
+        categoria:"bebes",
+        precio:25.90,
+        descripcion:"Dispositivo para medición de temperatura.",
+        receta:false,
+        imagen:"termometro.png"
+    },
+
+    {
+        id:18,
+        nombre:"Curitas adhesivas",
+        categoria:"primeros",
+        precio:7.90,
+        descripcion:"Protección para pequeñas lesiones.",
+        receta:false,
+        imagen:"curitas.png"
+    },
+
+    {
+        id:19,
+        nombre:"Venda elástica",
+        categoria:"primeros",
+        precio:9.90,
+        descripcion:"Material de primeros auxilios.",
+        receta:false,
+        imagen:"venda.png"
+    },
+
+    {
+        id:20,
+        nombre:"Gasas estériles",
+        categoria:"primeros",
+        precio:8.90,
+        descripcion:"Material para botiquín.",
+        receta:false,
+        imagen:"gasas.png"
+    },
+
+    {
+        id:21,
+        nombre:"Alcohol en gel",
+        categoria:"primeros",
+        precio:10.90,
+        descripcion:"Producto para higiene de manos.",
+        receta:false,
+        imagen:"alcohol-gel.png"
+    },
+
+    {
+        id:22,
+        nombre:"Mascarillas",
+        categoria:"proteccion",
+        precio:12.90,
+        descripcion:"Mascarillas desechables.",
+        receta:false,
+        imagen:"mascarillas.png"
+    },
+
+    {
+        id:23,
+        nombre:"Guantes descartables",
+        categoria:"proteccion",
+        precio:15.90,
+        descripcion:"Guantes de protección.",
+        receta:false,
+        imagen:"guantes.png"
+    },
+
+    {
+        id:24,
+        nombre:"Protector facial",
+        categoria:"proteccion",
+        precio:19.90,
+        descripcion:"Elemento de protección personal.",
+        receta:false,
+        imagen:"protector-facial.png"
+    }
+
+];
+
+const CATALOGO_STORAGE_KEY = 'farmaSaludCatalogo';
+// Las imágenes de productos usan IndexedDB para evitar el límite reducido de localStorage.
+const PRODUCT_MEDIA_DB='FarmaSaludMediaDB';
+const PRODUCT_MEDIA_STORE='images';
+const catalogImageCache=new Map();
+function abrirDBImagenesCatalogo(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB no está disponible'));return;}const req=indexedDB.open(PRODUCT_MEDIA_DB,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(PRODUCT_MEDIA_STORE))req.result.createObjectStore(PRODUCT_MEDIA_STORE);};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('No se pudo abrir el almacén de imágenes'));});}
+async function obtenerImagenCatalogo(key){const db=await abrirDBImagenesCatalogo();return new Promise((resolve,reject)=>{const tx=db.transaction(PRODUCT_MEDIA_STORE,'readonly'),req=tx.objectStore(PRODUCT_MEDIA_STORE).get(key);req.onsuccess=()=>{db.close();resolve(typeof req.result==='string'?req.result:'');};req.onerror=()=>{db.close();reject(req.error||new Error('No se pudo leer la imagen'));};});}
+async function cargarImagenesCatalogoDesdeDB(){for(const p of productos){if(typeof p.imagen==='string'&&p.imagen.startsWith('idb-product:')){const key=`product-${p.imagen.slice('idb-product:'.length)}`;try{const data=await obtenerImagenCatalogo(key);if(data)catalogImageCache.set(p.imagen,data);}catch(error){console.warn('No se pudo cargar la imagen del producto '+p.nombre,error);}}}aplicarFiltrosCatalogo();actualizarCarrito();}
+function imagenCatalogoSrc(value){if(typeof value!=='string'||!value)return '';if(value.startsWith('idb-product:'))return catalogImageCache.get(value)||'';return value.startsWith('data:image/')?value:((value.startsWith('http://')||value.startsWith('https://'))?value:'img/'+value.replace(/^img\//,''));}
+function cargarCatalogo(){
+    try{
+        const raw=localStorage.getItem(CATALOGO_STORAGE_KEY);
+        if(raw!==null){
+            const saved=JSON.parse(raw);
+            if(Array.isArray(saved)) return saved.filter(p=>p&&p.activo!==false).map((p,i)=>({
+                id:Number(p.id)||i+1,nombre:String(p.nombre||''),codigo:String(p.codigo||''),
+                categoria:String(p.categoria||'otros'),precio:Math.max(0,Number(p.precio)||0),
+                descripcion:String(p.descripcion||''),receta:p.receta===true,
+                imagen:typeof p.imagen==='string'?p.imagen:'',activo:p.activo!==false
+            }));
+        }
+    }catch(error){console.warn('No se pudo leer el catálogo guardado; se usarán los productos iniciales.',error);}
+    const iniciales=productosBase.map(p=>({...p,codigo:p.codigo||'',activo:true,receta:!!p.receta}));
+    try{localStorage.setItem(CATALOGO_STORAGE_KEY,JSON.stringify(iniciales));}catch(error){console.warn('No se pudo preparar el catálogo local.',error);}
+    return iniciales;
+}
+let productos = cargarCatalogo();
+
+
+/* =========================
+   CARRITO
+========================= */
+
+let carrito = JSON.parse(
+    localStorage.getItem("farmaSaludCarrito")
+) || [];
+
+
+/* =========================
+   MOSTRAR PRODUCTOS
+========================= */
+
+function mostrarProductos(lista){
+    const container=document.getElementById('productsContainer');
+    const disponibles=(Array.isArray(lista)?lista:[]);
+    if(!disponibles.length){container.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:50px;color:#667781"><h3>No encontramos productos</h3><p>Intenta con otra búsqueda.</p></div>';return;}
+    container.innerHTML=disponibles.map(producto=>{
+        const imagen=imagenCatalogoSrc(producto.imagen);
+        const nombre=escapePromoHTML(producto.nombre||'Producto'),desc=escapePromoHTML(producto.descripcion||''),categoryNames={medicamentos:'Medicamentos',vitaminas:'Vitaminas y suplementos',cuidado:'Cuidado personal',bebes:'Bebés',primeros:'Primeros auxilios',proteccion:'Protección',otros:'Otros'},categoria=escapePromoHTML(categoryNames[producto.categoria]||producto.categoria||'Otros');
+        const imagenHTML=imagen?`<img src="${escapePromoHTML(imagen)}" alt="${nombre}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span class=&quot;product-no-image&quot;>Sube la imagen desde administración</span>')">`:'<span class="product-no-image">Sube la imagen desde administración</span>';
+        const recetaLabel=producto.receta?'<span class="recipe-product-badge">📄 Requiere receta médica</span>':'';
+        return `<article class="product"><div class="product-image">${imagenHTML}</div><div class="product-category">${categoria}</div><h3>${nombre}</h3><p class="product-description">${desc}</p>${recetaLabel}<div class="product-bottom"><span class="product-price">S/ ${Number(producto.precio||0).toFixed(2)}</span><button class="add-cart" type="button" onclick="agregarCarrito(${Number(producto.id)})">+ Agregar</button></div></article>`;
+    }).join('');
+}
+
+
+/* =========================
+   AGREGAR AL CARRITO
+========================= */
+
+let accionPendienteReceta = null;
+function hayRecetaGuardada(){try{const r=JSON.parse(localStorage.getItem('farmaSaludReceta')||'null');return !!(r&&typeof r.dataUrl==='string'&&r.dataUrl.startsWith('data:image/'));}catch(e){return false;}}
+function exigirRecetaAntesDeAgregar(producto, accion){
+    if(!producto || producto.receta!==true || hayRecetaGuardada()){accion();return;}
+    accionPendienteReceta=accion;const modal=document.getElementById('recipeRequiredModal');
+    document.getElementById('recipeModalDescription').textContent=`“${producto.nombre}” está marcado como producto que requiere receta médica. Adjunta una imagen legible para poder agregarlo al carrito.`;
+    document.getElementById('requiredRecipeFile').value='';modal.hidden=false;document.getElementById('requiredRecipeFile').focus();
+}
+function cerrarModalReceta(){document.getElementById('recipeRequiredModal').hidden=true;accionPendienteReceta=null;}
+function agregarCarrito(id){
+    const producto=productos.find(p=>String(p.id)===String(id));if(!producto)return;
+    exigirRecetaAntesDeAgregar(producto,()=>{
+        const existente=carrito.find(item=>String(item.id)===String(producto.id));
+        if(existente)existente.cantidad=(Number(existente.cantidad)||1)+1;
+        else carrito.push({...producto,cantidad:1});
+        guardarCarrito();actualizarCarrito();abrirCarrito();
+    });
+}
+document.getElementById('cancelRecipeUpload').addEventListener('click',cerrarModalReceta);
+document.getElementById('recipeRequiredModal').addEventListener('click',function(e){if(e.target===this)cerrarModalReceta();});
+document.getElementById('recipeUploadForm').addEventListener('submit',function(event){
+    event.preventDefault();const file=document.getElementById('requiredRecipeFile').files&&document.getElementById('requiredRecipeFile').files[0];if(!file)return;
+    if(!/^image\/(jpeg|png|webp)$/.test(file.type)){alert('Selecciona una imagen JPG, PNG o WEBP.');return;}
+    if(file.size>1024*1024){alert('La imagen debe pesar como máximo 1 MB en este prototipo local.');return;}
+    const reader=new FileReader();reader.onerror=()=>alert('No se pudo leer la receta. Inténtalo de nuevo.');reader.onload=()=>{
+        try{localStorage.setItem('farmaSaludReceta',JSON.stringify({nombre:file.name,tipo:file.type,tamano:file.size,dataUrl:reader.result,fechaCarga:new Date().toISOString()}));const accion=accionPendienteReceta;document.getElementById('recipeRequiredModal').hidden=true;accionPendienteReceta=null;if(typeof accion==='function')accion();}
+        catch(error){alert('No se pudo guardar la receta en este navegador. Prueba con una imagen más pequeña.');}
+    };reader.readAsDataURL(file);
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('recipeRequiredModal').hidden)cerrarModalReceta();});
+
+
+/* =========================
+   GUARDAR
+========================= */
+
+function guardarCarrito(){
+
+    localStorage.setItem(
+        "farmaSaludCarrito",
+        JSON.stringify(carrito)
+    );
+
+}
+
+
+/* =========================
+   ACTUALIZAR CARRITO
+========================= */
+
+function actualizarCarrito(){
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    const cantidadTotal =
+        carrito.reduce(
+            (total,item) => total + item.cantidad,
+            0
+        );
+
+
+    cartCount.textContent = cantidadTotal;
+
+
+    if(carrito.length === 0){
+
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                <h3>Tu carrito está vacío</h3>
+                <p>Agrega productos para comenzar tu compra.</p>
+            </div>
+        `;
+
+        cartTotal.textContent = "S/ 0.00";
+
+        return;
+    }
+
+
+    cartItems.innerHTML = carrito.map(item => `
+
+        <div class="cart-item">
+            ${imagenCarrito(item) ? `<img class="cart-thumb" src="${imagenCarrito(item)}" alt="${escapePromoHTML(item.nombre || 'Producto')}" onerror="this.style.display='none'">` : ''}
+            <div class="cart-item-info">
+
+                <h4>
+                    ${escapePromoHTML(item.nombre)}
+                </h4>
+
+                <p>
+                    S/ ${Number(item.precio || 0).toFixed(2)}
+                </p>
+
+                ${item.promoId && Number(item.precioOriginal)>Number(item.precio) ? `<small style="color:#7b8c93;text-decoration:line-through">Antes S/ ${Number(item.precioOriginal).toFixed(2)}</small>` : ''}
+
+                <div class="cart-controls">
+
+                    <button
+                        onclick="cambiarCantidad(${item.id},-1)"
+                    >
+                        −
+                    </button>
+
+                    <span>
+                        ${item.cantidad}
+                    </span>
+
+                    <button
+                        onclick="cambiarCantidad(${item.id},1)"
+                    >
+                        +
+                    </button>
+
+                    <button
+                        class="delete-item"
+                        onclick="eliminarProducto(${item.id})"
+                    >
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+
+    const total =
+        carrito.reduce(
+            (sum,item) =>
+                sum + item.precio * item.cantidad,
+            0
+        );
+
+
+    cartTotal.textContent =
+        "S/ " + total.toFixed(2);
+}
+
+
+/* =========================
+   CAMBIAR CANTIDAD
+========================= */
+
+function cambiarCantidad(id,cambio){
+
+    const item =
+        carrito.find(
+            producto => producto.id === id
+        );
+
+    if(!item) return;
+
+    item.cantidad += cambio;
+
+    if(item.cantidad <= 0){
+
+        carrito =
+            carrito.filter(
+                producto => producto.id !== id
+            );
+
+    }
+
+    guardarCarrito();
+    actualizarCarrito();
+}
+
+
+/* =========================
+   ELIMINAR
+========================= */
+
+function eliminarProducto(id){
+
+    carrito =
+        carrito.filter(
+            item => item.id !== id
+        );
+
+    guardarCarrito();
+    actualizarCarrito();
+}
+
+
+/* =========================
+   ABRIR CARRITO
+========================= */
+
+function abrirCarrito(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.add("active");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+}
+
+
+/* =========================
+   CERRAR CARRITO
+========================= */
+
+function cerrarCarrito(){
+
+    document
+        .getElementById("cartPanel")
+        .classList.remove("active");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+}
+
+
+/* =========================
+   CONTINUAR COMPRA
+========================= */
+
+function continuarCarrito(){
+
+    if(carrito.length === 0){
+
+        alert("Tu carrito está vacío.");
+
+        return;
+    }
+
+
+    const usuario =
+        localStorage.getItem("farmaSaludUsuario");
+
+
+    if(!usuario){
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    window.location.href =
+        "carrito.html";
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function irLogin(){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   FILTROS COMBINADOS DEL CATÁLOGO
+========================= */
+let categoriaActiva = 'todos';
+let textoBusqueda = '';
+let precioMaximo = 'todos';
+let ordenCatalogo = 'recomendados';
+
+function filtrar(categoria, boton){
+    categoriaActiva = categoria || 'todos';
+    const select = document.getElementById('categoryFilter');
+    if(select) select.value = categoriaActiva;
+    document.querySelectorAll('.navbar button[onclick^="filtrar("]').forEach(btn => {
+        const m = (btn.getAttribute('onclick') || '').match(/filtrar\('([^']+)'/);
+        btn.classList.toggle('active', !!m && m[1] === categoriaActiva);
+    });
+    aplicarFiltrosCatalogo();
+    if(boton) boton.classList.add('active');
+}
+
+function aplicarFiltrosCatalogo(){
+    const searchEl = document.getElementById('searchInput');
+    if(searchEl && searchEl.value !== textoBusqueda) textoBusqueda = searchEl.value;
+    const categoryEl = document.getElementById('categoryFilter');
+    const priceEl = document.getElementById('priceFilter');
+    const sortEl = document.getElementById('sortFilter');
+    if(categoryEl) categoriaActiva = categoryEl.value || 'todos';
+    if(priceEl) precioMaximo = priceEl.value || 'todos';
+    if(sortEl) ordenCatalogo = sortEl.value || 'recomendados';
+
+    const q = normalizarTexto(textoBusqueda.trim());
+    let lista = productos.filter(producto => {
+        const matchesCategory = categoriaActiva === 'todos' || producto.categoria === categoriaActiva;
+        const haystack = normalizarTexto(`${producto.nombre} ${producto.descripcion} ${producto.categoria}`);
+        const matchesSearch = !q || haystack.includes(q);
+        const matchesPrice = precioMaximo === 'todos' || Number(producto.precio) <= Number(precioMaximo);
+        return matchesCategory && matchesSearch && matchesPrice;
+    });
+
+    if(ordenCatalogo === 'precio-menor') lista.sort((a,b)=>a.precio-b.precio);
+    else if(ordenCatalogo === 'precio-mayor') lista.sort((a,b)=>b.precio-a.precio);
+    else if(ordenCatalogo === 'nombre') lista.sort((a,b)=>a.nombre.localeCompare(b.nombre,'es'));
+
+    mostrarProductos(lista);
+    const count = document.getElementById('filterResults');
+    if(count) count.textContent = `Mostrando ${lista.length} de ${productos.length} productos`;
+    document.querySelectorAll('.navbar button[onclick^="filtrar("]').forEach(btn => {
+        const m = (btn.getAttribute('onclick') || '').match(/filtrar\('([^']+)'/);
+        btn.classList.toggle('active', !!m && m[1] === categoriaActiva);
+    });
+}
+
+function normalizarTexto(value){
+    return String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+}
+
+function resetearFiltros(){
+    categoriaActiva = 'todos'; textoBusqueda = ''; precioMaximo = 'todos'; ordenCatalogo = 'recomendados';
+    const search = document.getElementById('searchInput'); if(search) search.value = '';
+    const category = document.getElementById('categoryFilter'); if(category) category.value = 'todos';
+    const price = document.getElementById('priceFilter'); if(price) price.value = 'todos';
+    const sort = document.getElementById('sortFilter'); if(sort) sort.value = 'recomendados';
+    aplicarFiltrosCatalogo();
+}
+
+const searchInputElement = document.getElementById('searchInput');
+if(searchInputElement){
+    searchInputElement.addEventListener('input', function(){ textoBusqueda = this.value; aplicarFiltrosCatalogo(); });
+}
+['categoryFilter','priceFilter','sortFilter'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('change',aplicarFiltrosCatalogo);
+});
+const resetFiltersButton=document.getElementById('resetFilters');
+if(resetFiltersButton) resetFiltersButton.addEventListener('click',resetearFiltros);
+
+function buscarDesdeAsistente(consulta){
+    const input=document.getElementById('searchInput');
+    if(input){input.value=consulta||'';textoBusqueda=input.value;}
+    categoriaActiva='todos';
+    const cat=document.getElementById('categoryFilter');if(cat)cat.value='todos';
+    aplicarFiltrosCatalogo();
+    irProductos();
+    if(input) input.focus({preventScroll:true});
+}
+
+/* =========================
+   FUNDADORES ADMINISTRABLES
+   Los perfiles se editan en admin.html y se guardan localmente.
+========================= */
+const FOUNDER_STORAGE_KEY = 'farmaSaludFundadores';
+const DEFAULT_FOUNDERS = Array.from({length:6}, (_,i)=>({id:`f${i+1}`,name:'',role:'',bio:'',image:''}));
+function readFounders(){
+  try{
+    const raw=localStorage.getItem(FOUNDER_STORAGE_KEY);
+    if(raw===null)return DEFAULT_FOUNDERS.map(f=>({...f}));
+    const list=JSON.parse(raw);if(!Array.isArray(list))return DEFAULT_FOUNDERS.map(f=>({...f}));
+    return DEFAULT_FOUNDERS.map((def,i)=>{const f=list[i]||{};return {id:`f${i+1}`,name:String(f.name||'').slice(0,70),role:String(f.role||'').slice(0,70),bio:String(f.bio||'').slice(0,320),image:typeof f.image==='string'&&f.image.startsWith('data:image/')?f.image:''};});
+  }catch(e){return DEFAULT_FOUNDERS.map(f=>({...f}));}
+}
+function renderFounders(){
+ const host=document.getElementById('foundersGrid');if(!host)return;
+ const list=readFounders();
+ host.innerHTML=list.map((f,i)=>{
+  const name=escapePromoHTML(f.name.trim()||`Fundador/a ${i+1}`),role=escapePromoHTML(f.role.trim()||'Perfil por completar'),bio=escapePromoHTML(f.bio.trim()||'Pronto compartiremos una breve presentación.'),photo=f.image?`<img src="${escapePromoHTML(f.image)}" alt="Fotografía de ${name}" loading="lazy">`:'👤';
+  const pending=(!f.name.trim()||!f.role.trim()||!f.bio.trim())?'<div class="founder-placeholder-note">Este perfil está pendiente de completar por el administrador.</div>':'';
+  return `<article class="founder-card"><div class="founder-photo">${photo}</div><div class="founder-info"><span class="founder-role">${role}</span><h4>${name}</h4><p>${bio}</p>${pending}</div></article>`;
+ }).join('');
+}
+
+/* =========================
+   PROMOCIONES EDITABLES
+   Los cambios se leen desde el almacenamiento local de este navegador.
+========================= */
+const PROMO_STORAGE_KEY = 'farmaSaludPromociones';
+const PROMO_DEFAULTS = [
+  { id: 'p1', active: false, badge: 'Oferta especial', title: 'Promoción 1', description: '', button: 'Agregar al carrito', image: '', price: 0, originalPrice: 0, categoria:'cuidado', receta:false },
+  { id: 'p2', active: false, badge: 'Oferta especial', title: 'Promoción 2', description: '', button: 'Agregar al carrito', image: '', price: 0, originalPrice: 0, categoria:'cuidado', receta:false },
+  { id: 'p3', active: false, badge: 'Oferta especial', title: 'Promoción 3', description: '', button: 'Agregar al carrito', image: '', price: 0, originalPrice: 0, categoria:'cuidado', receta:false }
+];
+function readPromotions(){
+  try {
+    const raw = localStorage.getItem(PROMO_STORAGE_KEY);
+    if(raw === null) return PROMO_DEFAULTS.map(p=>({...p}));
+    const list = JSON.parse(raw);
+    if(!Array.isArray(list)) return PROMO_DEFAULTS.map(p=>({...p}));
+    return list.slice(0,3).map((p,i)=>({
+      ...PROMO_DEFAULTS[i], ...p,
+      id: String(p.id || `p${i+1}`),
+      active: p.active === true,
+      badge: String(p.badge || 'Oferta especial').slice(0,48),
+      title: String(p.title || '').slice(0,90),
+      description: String(p.description || '').slice(0,260),
+      button: String(p.button || 'Agregar al carrito').slice(0,35),
+      image: typeof p.image === 'string' && p.image.startsWith('data:image/') ? p.image : '',
+      price: Math.max(0, Number(p.price) || 0),
+      originalPrice: Math.max(0, Number(p.originalPrice) || 0),
+      categoria: String(p.categoria || 'cuidado'), receta: p.receta === true
+    }));
+  } catch(e){ return PROMO_DEFAULTS.map(p=>({...p})); }
+}
+function escapePromoHTML(value){
+  return String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function promoCardHTML(p){
+  const title=escapePromoHTML(p.title), description=escapePromoHTML(p.description), badge=escapePromoHTML(p.badge);
+  const image=p.image && p.image.startsWith('data:image/') ? `<img src="${escapePromoHTML(p.image)}" alt="${title}" loading="lazy">` : '<div class="promo-image-fallback">Imagen de promoción</div>';
+  const discount=Number(p.originalPrice)>Number(p.price) && Number(p.originalPrice)>0 ? Math.round((Number(p.originalPrice)-Number(p.price))*100/Number(p.originalPrice)) : 0;
+  const price=Number(p.price)>0 ? `<div class="promo-price-row"><span class="promo-price">S/ ${Number(p.price).toFixed(2)}</span>${Number(p.originalPrice)>Number(p.price)?`<span class="promo-old-price">S/ ${Number(p.originalPrice).toFixed(2)}</span>`:''}</div>` : '';
+  const canBuy=Number(p.price)>0;
+  const cta=canBuy ? `<button type="button" class="promo-cta" onclick="agregarPromocionAlCarrito('${escapePromoHTML(p.id)}')">🛒 Agregar al carrito</button>` : `<button type="button" class="promo-cta" onclick="cerrarPromociones();irProductos();">Ver catálogo →</button>`;
+  const recetaTag=p.receta?'<span class="promo-badge">📄 Requiere receta médica</span>':'';
+  return `<article class="promo-card promo-card-image"><div class="promo-photo">${image}${discount?`<span class="discount-chip">-${discount}%</span>`:''}</div><div class="promo-body"><span class="promo-badge">${badge}</span>${recetaTag}<h3>${title}</h3><p>${description}</p>${price}${cta}</div></article>`;
+}
+function renderPromotions(){
+  const active = readPromotions().filter(p=>p.active && p.title.trim() && p.description.trim() && p.image && Number(p.price)>0);
+  const grid = document.getElementById('promoCardsContainer');
+  const modalGrid = document.getElementById('promoModalCards');
+  const empty = '<div class="promo-empty">Pronto encontrarás aquí nuestras promociones. El administrador puede publicar una imagen, su precio y la oferta desde el panel de administración.</div>';
+  if(grid) grid.innerHTML = active.length ? active.map(p=>promoCardHTML(p)).join('') : empty;
+  if(modalGrid) modalGrid.innerHTML = active.length ? active.map(p=>promoCardHTML(p)).join('') : empty;
+  return active.length;
+}
+function imagenCarrito(item){
+  if(item && item.promoId){const p=readPromotions().find(x=>x.id===item.promoId);if(p && p.image)return p.image;}
+  if(item && typeof item.imagen==='string' && item.imagen.startsWith('idb-product:'))return catalogImageCache.get(item.imagen)||'';
+  if(item && typeof item.imagen==='string' && item.imagen.startsWith('data:image/'))return item.imagen;
+  if(item && item.imagen)return `img/${escapePromoHTML(item.imagen)}`;
+  return '';
+}
+function agregarPromocionAlCarrito(id){
+  const promo=readPromotions().find(p=>p.id===String(id) && p.active && p.image && Number(p.price)>0);
+  if(!promo){alert('Esta promoción ya no está disponible. Actualiza la página e inténtalo de nuevo.');renderPromotions();return;}
+  const n=Number(String(promo.id).replace(/\D/g,'')) || 1;
+  const productId=9000+n;
+  const promoItem={id:productId,promoId:promo.id,nombre:promo.title,categoria:promo.categoria||'otros',descripcion:promo.description,precio:Number(promo.price),precioOriginal:Number(promo.originalPrice)||0,imagen:'',receta:promo.receta===true};
+  exigirRecetaAntesDeAgregar(promoItem,()=>{const item=carrito.find(x=>Number(x.id)===productId);if(item){item.cantidad=(Number(item.cantidad)||1)+1;}else{carrito.push({...promoItem,cantidad:1});}guardarCarrito();actualizarCarrito();cerrarPromociones();abrirCarrito();});
+}
+function abrirPromociones(automatico=false){
+  renderPromotions();
+  const overlay = document.getElementById('promoModalOverlay');
+  if(!overlay) return;
+  if(!renderPromotions()) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if(automatico){ try{sessionStorage.setItem('farmaSaludPromoVistas','si');}catch(e){} }
+  const close = overlay.querySelector('.promo-close');
+  if(close) close.focus();
+}
+function cerrarPromociones(){
+  const overlay = document.getElementById('promoModalOverlay');
+  if(overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function cerrarPromocionesDesdeFondo(event){
+  if(event.target && event.target.id === 'promoModalOverlay') cerrarPromociones();
+}
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') cerrarPromociones(); });
+
+/* =========================
+   ASISTENTE VIRTUAL DE AYUDA RÁPIDA
+   Es un asistente de reglas locales, no una IA conectada ni un asesor sanitario.
+========================= */
+const assistantPanel = document.getElementById('assistantPanel');
+const assistantLauncher = document.getElementById('assistantLauncher');
+const assistantMessages = document.getElementById('assistantMessages');
+const assistantInput = document.getElementById('assistantInput');
+
+function abrirAsistente(){
+    if(!assistantPanel || !assistantLauncher) return;
+    assistantPanel.hidden=false;
+    assistantLauncher.setAttribute('aria-expanded','true');
+    if(assistantInput) assistantInput.focus();
+}
+function cerrarAsistente(){
+    if(!assistantPanel || !assistantLauncher) return;
+    assistantPanel.hidden=true;
+    assistantLauncher.setAttribute('aria-expanded','false');
+}
+function agregarMensajeAsistente(texto, remitente='bot', acciones=[]){
+    if(!assistantMessages) return;
+    const bubble=document.createElement('div');
+    bubble.className=`assistant-message ${remitente==='user'?'assistant-user-message':'assistant-bot-message'}`;
+    const para=document.createElement('p'); para.textContent=texto; bubble.appendChild(para);
+    if(acciones.length){
+        const group=document.createElement('div');group.className='assistant-message-actions';
+        acciones.forEach(a=>{
+            const b=document.createElement('button');b.type='button';b.className='assistant-action-button';b.textContent=a.label;b.dataset.assistantAction=a.action;
+            if(a.value!==undefined)b.dataset.value=String(a.value);
+            group.appendChild(b);
+        });
+        bubble.appendChild(group);
+    }
+    assistantMessages.appendChild(bubble);
+    assistantMessages.scrollTop=assistantMessages.scrollHeight;
+}
+function respuestaAsistente(pregunta){
+    const t=normalizarTexto(pregunta);
+    if(!t.trim()) return {text:'Escribe una pregunta y con gusto te orientaré sobre cómo usar FarmaSalud.'};
+
+    // Peticiones de diagnóstico, tratamiento o dosis: se orienta a una persona profesional.
+    const consultaSanitaria=/(que puedo tomar|que debo tomar|que medicamento (tomo|debo|puedo tomar|me recomiendas)|que pastilla|dosis|cuantos mg|cada cuantas horas|estoy enfermo|me duele|tengo dolor|sintomas|diagnost|embaraz|interaccion|efectos secundarios|antibiotic(o|a) para|recetame|cura para|recomiend.*(medicamento|pastilla|dolor|fiebre|tos|gripe)|medicamento.*(dolor|fiebre|tos|gripe))/.test(t);
+    if(consultaSanitaria) return {text:'Puedo ayudarte a encontrar información del catálogo, pero no puedo diagnosticar, elegir un medicamento para tus síntomas ni indicar dosis. Consulta con un médico o farmacéutico, especialmente antes de usar medicamentos o combinar productos. Si crees que es una urgencia, busca atención sanitaria inmediata.'};
+
+    if(/hola|buenas|buenos dias|buenas tardes|buenas noches|quien eres/.test(t)) return {text:'¡Hola! 😊 Soy Farma, el asistente virtual de la tienda. Puedo ayudarte con el catálogo, las promociones, el carrito, los pedidos y la información de FarmaSalud. ¿Qué necesitas?',actions:[{label:'Ver catálogo',action:'products'},{label:'Ver promociones',action:'promotions'}]};
+
+    if(/promocion|promociones|oferta|ofertas|descuento/.test(t)) return {text:'Puedes consultar las promociones publicadas en la sección Promociones. Desde ahí puedes agregar una oferta directamente a tu carrito. Los precios y la disponibilidad deben verificarse antes de confirmar el pedido.',actions:[{label:'Ver promociones',action:'promotions'}]};
+    if(/carrito|agregue|agregar|añadir|compra|comprar|pagar|pedido nuevo/.test(t)) return {text:'En el catálogo, pulsa “+ Agregar”. También puedes añadir las promociones desde su tarjeta. Abre el carrito para revisar cantidades y total; luego pulsa “Continuar compra”. Este prototipo no procesa pagos reales.',actions:[{label:'Abrir mi carrito',action:'cart'},{label:'Buscar productos',action:'products'}]};
+    if(/seguimiento|rastrear|donde esta|estado del pedido|codigo de pedido/.test(t)) return {text:'Para consultar el estado, abre Seguimiento e introduce el código que aparece al confirmar el pedido. Este prototipo solo muestra pedidos guardados en el mismo navegador.',actions:[{label:'Abrir seguimiento',action:'tracking'}]};
+    if(/nosotros|fundadores|fundador|mision|vision|valores|principios|quienes son|farma.?salud/.test(t)) return {text:'FarmaSalud busca hacer más sencilla la búsqueda de productos para el cuidado de la salud, con una experiencia cercana, información clara y uso responsable de la tecnología. En “Quiénes somos” puedes conocer su propósito, misión, visión, valores y equipo fundador.',actions:[{label:'Conocer FarmaSalud',action:'about'}]};
+    if(/categoria|vitaminas|bebe|bebes|primeros auxilios|proteccion|cuidado personal|medicamentos/.test(t)){
+        const cats=[['vitamina','vitaminas'],['bebe','bebes'],['primeros','primeros'],['proteccion','proteccion'],['cuidado','cuidado'],['medicamento','medicamentos']];
+        const hit=cats.find(([k])=>t.includes(k));
+        if(hit) return {text:`Puedo mostrarte los artículos de la categoría “${hit[1]==='bebes'?'Bebés':hit[1]==='primeros'?'Primeros auxilios':hit[1]==='cuidado'?'Cuidado personal':hit[1][0].toUpperCase()+hit[1].slice(1)}”. Revisa la información del producto y consulta a un profesional para cualquier duda de salud.`,actions:[{label:'Ver categoría',action:'category',value:hit[1]}]};
+    }
+
+    const found=productos.find(prod=>{
+        const name=normalizarTexto(prod.nombre);
+        const words=name.split(/\s+/).filter(w=>w.length>3);
+        return name && (t.includes(name) || words.some(w=>t.includes(w)));
+    });
+    if(found) return {text:`Encontré “${found.nombre}” en el catálogo por S/ ${Number(found.precio).toFixed(2)}. Esta es información del catálogo de demostración; revisa la presentación y consulta al farmacéutico cuando corresponda.`,actions:[{label:'Ver producto',action:'search',value:found.nombre},{label:'Agregar al carrito',action:'addProduct',value:found.id}]};
+
+    if(/buscar|busco|encontrar|catalogo|productos/.test(t)) return {text:'Puedes escribir el nombre del artículo en el buscador de arriba o usar los filtros por categoría y precio máximo. También puedo abrir el catálogo para que explores las opciones.',actions:[{label:'Abrir catálogo',action:'products'}]};
+    if(/contacto|telefono|llamar|correo|email/.test(t)) return {text:'En el pie de página encontrarás los datos de contacto publicados en el prototipo: teléfono 943 032 119 y correo contacto@farmasalud.com. Verifica que los datos estén vigentes antes de utilizarlos.'};
+    return {text:'Puedo ayudar con el catálogo, filtros, promociones, carrito, seguimiento de pedidos o información institucional. Prueba una de estas opciones, o escribe el nombre de un producto que quieras buscar.',actions:[{label:'Buscar productos',action:'products'},{label:'Promociones',action:'promotions'},{label:'Seguimiento',action:'tracking'}]};
+}
+function enviarMensajeAsistente(pregunta){
+    const q=String(pregunta||'').trim();if(!q)return;
+    agregarMensajeAsistente(q,'user');
+    const response=respuestaAsistente(q);
+    agregarMensajeAsistente(response.text,'bot',response.actions||[]);
+}
+function ejecutarAccionAsistente(action,value){
+    if(action==='products'){cerrarAsistente();buscarDesdeAsistente('');return;}
+    if(action==='search'){cerrarAsistente();buscarDesdeAsistente(String(value||''));return;}
+    if(action==='category'){cerrarAsistente();filtrar(String(value||'todos'));irProductos();return;}
+    if(action==='promotions'){
+        cerrarAsistente();
+        if(!renderPromotions()) {document.getElementById('promociones').scrollIntoView({behavior:'smooth'});return;}
+        abrirPromociones(false);return;
+    }
+    if(action==='cart'){cerrarAsistente();abrirCarrito();return;}
+    if(action==='tracking'){window.location.href='seguimiento.html';return;}
+    if(action==='about'){cerrarAsistente();irNosotros();return;}
+    if(action==='addProduct'){
+        const id=Number(value); if(productos.some(p=>p.id===id)){cerrarAsistente();agregarCarrito(id);}return;
+    }
+}
+if(assistantLauncher) assistantLauncher.addEventListener('click',abrirAsistente);
+const assistantClose=document.getElementById('assistantClose');if(assistantClose)assistantClose.addEventListener('click',cerrarAsistente);
+const assistantForm=document.getElementById('assistantForm');
+if(assistantForm) assistantForm.addEventListener('submit',function(event){event.preventDefault();const q=assistantInput?assistantInput.value.trim():'';if(!q)return;if(assistantInput)assistantInput.value='';enviarMensajeAsistente(q);});
+if(assistantPanel) assistantPanel.addEventListener('click',function(event){
+    const btn=event.target.closest('[data-assistant-action]');if(!btn)return;
+    ejecutarAccionAsistente(btn.dataset.assistantAction,btn.dataset.value);
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarAsistente();});
+
+/* =========================
+   INICIAR PÁGINA
+========================= */
+function irNosotros(){
+  const section=document.getElementById('nosotros');
+  if(section)section.scrollIntoView({behavior:'smooth',block:'start'});
+}
+renderFounders();
+window.addEventListener('storage',function(e){if(e.key===FOUNDER_STORAGE_KEY)renderFounders();if(e.key===CATALOGO_STORAGE_KEY){productos=cargarCatalogo();cargarImagenesCatalogoDesdeDB();}if(e.key==='farmaSaludPromociones')renderPromotions();});
+
+aplicarFiltrosCatalogo();
+actualizarCarrito();
+cargarImagenesCatalogoDesdeDB();
+renderPromotions();
+// La ventana de promociones se muestra al entrar en Inicio, si hay promociones activas.
+setTimeout(() => abrirPromociones(true), 350);
+
+</script>
+
+</body>
+</html>
