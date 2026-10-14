@@ -1,2 +1,0 @@
-# FARMASALUD
-Delivery de Farmaceuticos 
