@@ -1,0 +1,1 @@
+El archivo catalogo.json es administrado por server.py. Se genera y actualiza automáticamente cuando se inicia el almacenamiento y se guardan cambios en el panel. No elimines .admin_secret: contiene la contraseña de administrador que se generó para esta instalación local.
