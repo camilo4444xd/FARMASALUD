@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exportar datos antiguos | FarmaSalud</title>
+<style>
+:root{--turq:#18B7A0;--navy:#0B2A43;--bg:#f4faf8}*{box-sizing:border-box}body{margin:0;padding:24px;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--navy);display:grid;place-items:center;min-height:100vh}.card{max-width:720px;width:100%;padding:30px;background:#fff;border:1px solid #d5e9e4;border-radius:22px;box-shadow:0 18px 50px #0b2a4312}.brand{color:var(--turq);font-weight:800;letter-spacing:.3px}h1{font-size:clamp(25px,4vw,36px);margin:12px 0}p,li{line-height:1.65;color:#506575}button{border:0;background:var(--turq);color:#fff;border-radius:12px;font-weight:700;padding:14px 18px;cursor:pointer;font-size:15px}button:hover{filter:brightness(.96)}.status{margin-top:16px;background:#eef8f5;border-radius:12px;padding:12px;color:#0b6d62;white-space:pre-wrap}.warning{border-left:4px solid #eba734;padding-left:12px}
+</style>
+</head>
+<body><main class="card">
+<div class="brand">FarmaSalud · Herramienta de migración</div>
+<h1>Exportar datos del navegador anterior</h1>
+<p>Abre este archivo desde la misma dirección web donde guardaste tus productos, promociones y fundadores. Descargará un respaldo JSON para importarlo en el nuevo panel del administrador.</p>
+<ul><li>Incluye el catálogo y las rutas/imágenes de productos disponibles.</li><li>Recupera imágenes de productos almacenadas en IndexedDB cuando estén disponibles.</li><li>Incluye promociones y perfiles de fundadores.</li><li>No exporta datos personales de clientes ni pedidos.</li></ul>
+<p class="warning"><strong>Importante:</strong> guarda el archivo descargado en un lugar seguro. El respaldo puede contener imágenes e información interna de tu catálogo.</p>
+<button id="exportBtn" type="button">Exportar datos antiguos</button>
+<div id="status" class="status" role="status">Listo para exportar. La página no envía tus datos a ningún servidor.</div>
+</main>
+<script>
+const status=document.getElementById('status');
+function read(key,fallback){try{const value=localStorage.getItem(key);return value?JSON.parse(value):fallback;}catch(e){return fallback;}}
+function openLegacyDB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB no está disponible en este navegador.'));return;}const req=indexedDB.open('FarmaSaludMediaDB',1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains('images'))req.result.createObjectStore('images');};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('No se pudo abrir el almacén de imágenes antiguo.'));});}
+async function getLegacyImage(key){const db=await openLegacyDB();return new Promise((resolve,reject)=>{const tx=db.transaction('images','readonly'),req=tx.objectStore('images').get(key);req.onsuccess=()=>{db.close();resolve(typeof req.result==='string'?req.result:'');};req.onerror=()=>{db.close();reject(req.error||new Error('No se pudo leer una imagen antigua.'));};});}
+async function exportData(){
+ const products=read('farmaSaludCatalogo',[]),promotions=read('farmaSaludPromociones',[]),founders=read('farmaSaludFundadores',[]);
+ if(!Array.isArray(products)&&!Array.isArray(promotions)&&!Array.isArray(founders))throw new Error('No se encontraron datos del proyecto en este origen.');
+ status.textContent='Buscando imágenes de productos guardadas en IndexedDB…';
+ for(const p of (Array.isArray(products)?products:[])){
+   if(p&&typeof p.imagen==='string'&&p.imagen.startsWith('idb-product:')){
+     const suffix=p.imagen.slice('idb-product:'.length),key=`product-${suffix}`;
+     try{const image=await getLegacyImage(key);p.imagen=image||'';}catch(e){p.imagen='';}
+   }
+ }
+ const payload={format:'FarmaSalud-local-export-v1',exportedAt:new Date().toISOString(),products:Array.isArray(products)?products:[],promotions:Array.isArray(promotions)?promotions:[],founders:Array.isArray(founders)?founders:[]};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='farmasalud-respaldo-local.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+ status.textContent=`Respaldo creado correctamente.\nProductos: ${payload.products.length}\nPromociones: ${payload.promotions.length}\nFundadores: ${payload.founders.length}\n\nGuarda farmasalud-respaldo-local.json. Después abre el nuevo FarmaSalud y usa «Importar respaldo» en el administrador.`;
+}
+document.getElementById('exportBtn').addEventListener('click',async()=>{const btn=document.getElementById('exportBtn');btn.disabled=true;try{await exportData();}catch(e){status.textContent='No se pudo exportar: '+e.message;}finally{btn.disabled=false;}});
+</script>
+</body></html>
