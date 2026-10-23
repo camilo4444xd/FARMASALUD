@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito | FarmaSalud</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+:root{--turquesa:#18B7A0;--turquesa-dark:#129984;--azul:#0B2A43;--azul-light:#123B5A;--fondo:#F5FAF9;--blanco:#fff;--gris:#6B7D85;--borde:#DDEBE8}
+body{background:radial-gradient(circle at 5% 10%,rgba(24,183,160,.08),transparent 28%),var(--fondo);color:var(--azul)}
+button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+header{height:78px;background:#fff;border-bottom:1px solid var(--borde);display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px rgba(11,42,67,.06)}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none}.logo-icon{width:50px;height:50px;border-radius:14px;border:2px solid var(--turquesa);overflow:hidden;display:flex;align-items:center;justify-content:center}.logo-icon img{width:100%;height:100%;object-fit:contain}.logo h1{font-size:23px;font-weight:800;color:var(--azul)}.logo p{font-size:10px;color:var(--turquesa-dark);font-weight:bold;margin-top:2px}.back-home{color:var(--turquesa-dark);text-decoration:none;font-weight:bold;font-size:14px;padding:10px 15px;border-radius:9px}.back-home:hover{background:#E9F8F5}
+.container{width:90%;max-width:1200px;margin:38px auto 60px}.page-title{margin-bottom:27px}.page-title h2{font-size:32px;margin-bottom:7px}.page-title p,.muted{color:var(--gris);font-size:14px}.checkout-layout{display:grid;grid-template-columns:1.6fr .8fr;gap:24px}.card{background:#fff;border:1px solid var(--borde);border-radius:19px;padding:24px;margin-bottom:20px;box-shadow:0 7px 25px rgba(11,42,67,.045)}.card-title{display:flex;align-items:center;gap:11px;margin-bottom:20px}.number{width:33px;height:33px;border-radius:10px;background:var(--turquesa);color:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}.card-title h3,.summary h3{font-size:18px;color:var(--azul)}
+.product-item{display:grid;grid-template-columns:80px 1fr auto;gap:15px;align-items:center;padding:16px 0;border-bottom:1px solid #EDF3F1}.product-item:last-child{border-bottom:none}.product-placeholder{width:80px;height:80px;border-radius:13px;background:linear-gradient(135deg,#EFFAF8,#E4F4F0);border:1px solid #DCEDE9;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#91A5AA;font-size:10px;text-align:center}.product-placeholder img{width:100%;height:100%;object-fit:contain;padding:7px}.product-name{font-size:15px;font-weight:800;margin-bottom:6px}.product-category{color:var(--turquesa-dark);font-size:10px;text-transform:uppercase;font-weight:800;margin-bottom:5px}.product-price{color:var(--gris);font-size:12px}.product-total{font-weight:800;text-align:right;white-space:nowrap}.quantity{display:flex;align-items:center;gap:7px;margin-top:9px;flex-wrap:wrap}.quantity button{width:28px;height:28px;border:1px solid #D8E7E3;background:#fff;border-radius:7px;font-weight:bold;color:var(--azul)}.quantity span{min-width:22px;text-align:center;font-size:13px;font-weight:bold}.delete-product{width:auto!important;padding:0 9px;background:#FFF2F2!important;color:#D34E4E!important;font-size:11px}.recipe-warning{margin-top:10px;background:#FFFAF0;border:1px solid #EFD49D;border-radius:9px;padding:10px;color:#8D621E;font-size:11px;line-height:1.45}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.info-box{background:#F7FBFA;border:1px solid #E1ECE9;border-radius:12px;padding:13px;min-width:0}.info-box.full{grid-column:1/-1}.info-label{color:#7A8C94;font-size:10px;margin-bottom:5px;text-transform:uppercase;font-weight:bold}.info-value{color:var(--azul);font-size:13px;font-weight:bold;overflow-wrap:anywhere}
+.payment-options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.payment-option{border:1px solid #DCE9E6;background:#fff;border-radius:13px;padding:15px;display:flex;align-items:center;gap:10px;cursor:pointer}.payment-option:hover{border-color:var(--turquesa);background:#F6FCFB}.payment-option.selected{border:2px solid var(--turquesa);background:#EFFAF7}.payment-option input{accent-color:var(--turquesa)}.payment-icon{font-size:23px}.payment-name{font-size:13px;font-weight:bold}.payment-description{font-size:10px;color:#82949C;margin-top:3px}.payment-message{margin-top:15px;padding:12px;background:#F5FAF9;border-radius:9px;font-size:12px;color:#627982;line-height:1.5}.summary{position:sticky;top:100px}.summary h3{font-size:20px;margin-bottom:22px}.summary-line{display:flex;justify-content:space-between;gap:15px;margin-bottom:14px;color:#667D86;font-size:14px}.summary-line strong{color:var(--azul)}.summary-line.total{border-top:1px solid #E3ECEF;padding-top:18px;margin-top:16px;font-size:22px;font-weight:bold;color:var(--azul)}.summary-line.total strong{color:var(--turquesa-dark)}.confirm-button,.btn{border:none;border-radius:10px;padding:14px 18px;font-weight:bold;font-size:13px;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.confirm-button{width:100%;background:linear-gradient(90deg,var(--turquesa),var(--turquesa-dark));color:#fff;padding:16px;font-size:15px;margin-top:15px}.confirm-button:hover,.btn-primary:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(24,183,160,.20)}.secure{text-align:center;color:#84959C;font-size:10px;margin-top:12px;line-height:1.5}.message{display:none;margin:12px 0;padding:12px;border-radius:10px;font-size:13px;line-height:1.4}.message.error{background:#FFF2F3;color:#BE123C;border:1px solid #F5C8CF}.message.info{background:#EAF8F4;color:#176B5D;border:1px solid #CDE8E3}
+.confirmation{max-width:850px;margin:40px auto;width:90%}.success{background:#fff;border-radius:22px;padding:42px;text-align:center;border:1px solid var(--borde);box-shadow:0 15px 45px rgba(11,42,67,.08)}.success-icon{width:78px;height:78px;border-radius:50%;background:#E7F8F2;color:#16835D;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:38px}.success h2{font-size:29px;margin-bottom:8px}.success>p{color:var(--gris);line-height:1.6;font-size:14px}.order-code{background:#F0FAF8;border:1px dashed var(--turquesa);border-radius:13px;padding:17px;margin:25px 0}.order-code span{display:block;color:#73878F;font-size:11px;margin-bottom:6px}.order-code strong{color:var(--turquesa-dark);font-size:25px;letter-spacing:2px}.final-buttons{display:flex;gap:10px;margin-top:25px}.final-button{flex:1;border:none;border-radius:10px;padding:13px;font-weight:bold}.primary{background:var(--turquesa);color:#fff}.secondary{background:#EAF7F4;color:var(--turquesa-dark)}.warning-demo{margin:15px 0;padding:12px;background:#FFF7E6;border:1px solid #F1D89B;color:#956B18;border-radius:10px;font-size:12px;line-height:1.5;text-align:left}
+@media(max-width:850px){.checkout-layout{grid-template-columns:1fr}.summary{position:static}}@media(max-width:600px){header{padding:0 4%;}.logo p{display:none}.logo h1{font-size:19px}.logo-icon{width:45px;height:45px}.back-home{font-size:12px;padding:8px}.container{width:94%;margin-top:28px}.page-title h2{font-size:27px}.info-grid,.payment-options{grid-template-columns:1fr}.info-box.full{grid-column:auto}.product-item{grid-template-columns:65px 1fr;align-items:start}.product-placeholder{width:65px;height:65px}.product-total{grid-column:2;text-align:left}.success{padding:25px 18px}.final-buttons{flex-direction:column}}
+.survey-prompt{display:flex;align-items:flex-start;gap:14px;text-align:left;margin:22px 0 4px;padding:18px;border:1px solid #cce9e1;border-radius:15px;background:linear-gradient(135deg,#f0fbf7,#f7fcfb)}.survey-prompt[hidden]{display:none!important}.survey-icon{font-size:25px;background:#dff5ed;width:48px;height:48px;border-radius:13px;display:grid;place-items:center;flex-shrink:0}.survey-prompt h3{font-size:16px;color:#0B2A43;margin:0 0 6px}.survey-prompt p{font-size:12px;color:#667781;line-height:1.55;margin:0 0 9px}.survey-prompt a{display:inline-block;background:#18B7A0;color:white;text-decoration:none;font-size:12px;font-weight:bold;border-radius:9px;padding:10px 13px}.survey-prompt a:hover{background:#129984}
+
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo"><div class="logo-icon"><img src="assets/img/logo.png" alt="FarmaSalud" onerror="this.style.display='none'"></div><div><h1>FarmaSalud</h1><p>Tu salud, más cerca</p></div></a>
+  <a href="index.html" class="back-home">← Seguir comprando</a>
+</header>
+<main class="container" id="checkoutPage">
+  <div class="page-title"><h2>Finalizar pedido</h2><p>Revisa tus productos y selecciona tu medio de pago.</p></div>
+  <div id="pageMessage" class="message"></div>
+  <div class="checkout-layout">
+    <div>
+      <section class="card"><div class="card-title"><div class="number">1</div><h3>Tus productos</h3></div><div id="productsList"></div></section>
+      <section class="card"><div class="card-title"><div class="number">2</div><h3>Datos de entrega</h3></div><div class="info-grid" id="customerInfo"></div></section>
+      <section class="card"><div class="card-title"><div class="number">3</div><h3>Medio de pago</h3></div>
+        <div class="payment-options">
+          <label class="payment-option" id="payment-card"><input type="radio" name="payment" value="tarjeta"><span class="payment-icon">💳</span><span><span class="payment-name">Tarjeta</span><span class="payment-description">Solo demostración</span></span></label>
+          <label class="payment-option" id="payment-yape"><input type="radio" name="payment" value="yape"><span class="payment-icon">📱</span><span><span class="payment-name">Yape</span><span class="payment-description">Pago por coordinar</span></span></label>
+          <label class="payment-option" id="payment-plin"><input type="radio" name="payment" value="plin"><span class="payment-icon">📲</span><span><span class="payment-name">Plin</span><span class="payment-description">Pago por coordinar</span></span></label>
+          <label class="payment-option" id="payment-cash"><input type="radio" name="payment" value="efectivo"><span class="payment-icon">💵</span><span><span class="payment-name">Efectivo</span><span class="payment-description">Al recibir</span></span></label>
+        </div>
+        <div class="payment-message" id="paymentMessage" aria-live="polite">Selecciona un medio de pago. Este prototipo no procesa cobros.</div>
+      </section>
+    </div>
+    <aside><div class="card summary"><h3>Resumen del pedido</h3><div class="summary-line"><span>Productos</span><strong id="subtotal">S/ 0.00</strong></div><div class="summary-line"><span>Envío</span><strong id="shipping">S/ 0.00</strong></div><div class="summary-line total"><span>Total</span><strong id="total">S/ 0.00</strong></div><button class="confirm-button" id="confirmButton" onclick="confirmarPedido()">CONFIRMAR PEDIDO</button><div class="secure">🔒 Prototipo local. No se cobra ni se valida un pago real.<br>No ingreses información bancaria real.</div></div></aside>
+  </div>
+</main>
+<main class="confirmation hidden" id="confirmationPage"><div class="success"><div class="success-icon">✓</div><h2>¡Pedido registrado!</h2><p>Tu solicitud se guardó en este navegador. Guarda el código para revisar su estado.</p><div class="order-code"><span>CÓDIGO DE PEDIDO</span><strong id="orderCode">FS-000000</strong></div><div id="paymentConfirmed" class="muted"></div><div id="surveyPrompt" class="survey-prompt" hidden><div class="survey-icon">💚</div><div><h3>¿Nos ayudas a mejorar FarmaSalud?</h3><p>Como parte de tu compra de un medicamento, puedes contarnos cómo fue tu experiencia en una breve encuesta.</p><a href="https://forms.gle/y6RKtQyX837qTGJa6" target="_blank" rel="noopener noreferrer">Responder encuesta de satisfacción ↗</a></div></div><div class="warning-demo">Este es un pedido de prueba local. No se ha realizado ningún cobro ni se ha enviado una solicitud a una farmacia.</div><div class="final-buttons"><button class="final-button secondary" onclick="window.location.href='index.html'">SEGUIR COMPRANDO</button><button class="final-button primary" onclick="irSeguimiento()">VER SEGUIMIENTO →</button></div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/farmasalud-cloud.js"></script>
+
+<script>
+'use strict';
+const STORAGE = {cart:'farmaSaludCarrito', user:'farmaSaludUsuario', recipe:'farmaSaludReceta', orders:'farmaSaludPedidos', legacyOrder:'farmaSaludPedido'};
+let carrito = readJSON(STORAGE.cart, []);
+let usuario = readJSON(STORAGE.user, null);
+let pedidoCreado = null;
+let metodoSeleccionado = '';
+const estadoNombres = ['Pedido recibido','Preparando pedido','En camino','Entregado'];
+const estadoMensajes = ['Tu pedido se registró en este navegador.','La farmacia está preparando los productos de tu pedido.','Tu pedido figura como enviado para entrega.','El pedido figura como entregado.'];
+function readJSON(key, fallback){ try { const raw=localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch(e){ return fallback; } }
+function esc(value){ return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function recipeData(){ const value=readJSON(STORAGE.recipe,null); return value && typeof value==='object' && typeof value.dataUrl==='string' && value.dataUrl.startsWith('data:image/') ? value : null; }
+function requiereReceta(item){
+ if(item&&item.receta===true)return true;
+ if(!item)return false;
+ if(item.promoId){const promos=readJSON('farmaSaludPromociones',[]);const promo=Array.isArray(promos)?promos.find(p=>p.id===item.promoId):null;return !!(promo&&promo.receta===true);}
+ const catalog=readJSON('farmaSaludCatalogo',[]);const product=Array.isArray(catalog)?catalog.find(p=>String(p.id)===String(item.id)):null;return !!(product&&product.receta===true);
+}
+function sincronizarCarritoConCatalogo(){
+ const catalog=readJSON('farmaSaludCatalogo',null),promos=readJSON('farmaSaludPromociones',[]);
+ carrito=carrito.map(item=>{
+  if(item.promoId){const promo=Array.isArray(promos)?promos.find(p=>p.id===item.promoId):null;if(!promo||promo.active!==true)return {...item,catalogDisabled:true};return {...item,nombre:promo.title||item.nombre,categoria:promo.categoria||item.categoria,precio:Number(promo.price)||Number(item.precio)||0,precioOriginal:Number(promo.originalPrice)||0,receta:promo.receta===true,catalogDisabled:false};}
+  if(Array.isArray(catalog)){const current=catalog.find(p=>String(p.id)===String(item.id));if(!current)return {...item,catalogDisabled:true};return {...item,nombre:current.nombre||item.nombre,codigo:current.codigo||item.codigo,categoria:current.categoria||item.categoria,descripcion:current.descripcion||item.descripcion,precio:Number(current.precio)||0,imagen:current.imagen||'',receta:current.receta===true,catalogDisabled:current.activo===false};}
+  return item;
+ });
+ try{localStorage.setItem(STORAGE.cart,JSON.stringify(carrito));}catch(e){console.warn('No se pudo actualizar el carrito con el catálogo',e);}
+}
+function getPedidos(){
+  let orders=readJSON(STORAGE.orders,[]); if(!Array.isArray(orders)) orders=[];
+  const legacy=readJSON(STORAGE.legacyOrder,null);
+  if(legacy && legacy.codigo && !orders.some(p=>p.codigo===legacy.codigo)){
+    const map={'Pedido recibido':0,'Preparando pedido':1,'Preparando':1,'En camino':2,'Entregado':3,'Cancelado':-1};
+    const estado=Number.isInteger(legacy.estado)?legacy.estado:(map[legacy.estado] ?? 0);
+    orders.push({...legacy,estado,historial:Array.isArray(legacy.historial)?legacy.historial:[{estado,fecha:legacy.fecha||new Date().toLocaleString('es-PE'),mensaje:'Pedido importado desde la versión anterior.'}]});
+  }
+  if(orders.length) localStorage.setItem(STORAGE.orders,JSON.stringify(orders));
+  return orders;
+}
+function formatSoles(n){return 'S/ '+Number(n||0).toFixed(2);}
+function imagenCheckout(item){
+ if(item&&item.promoId){const list=readJSON('farmaSaludPromociones',[]);const p=Array.isArray(list)?list.find(x=>x.id===item.promoId):null;if(p&&typeof p.image==='string'&&p.image)return p.image.startsWith('assets/')||p.image.startsWith('img/')||p.image.startsWith('data:image/')||p.image.startsWith('https://')?p.image:'assets/promociones/'+p.image;}
+ if(item&&typeof item.imagen==='string'&&(item.imagen.startsWith('data:image/')||item.imagen.startsWith('https://')))return item.imagen;
+ if(item&&typeof item.imagen==='string'&&item.imagen){if(item.imagen.startsWith('assets/')||item.imagen.startsWith('img/'))return item.imagen;return 'assets/productos/'+item.imagen;}
+ return '';
+}
+function mostrarProductos(){
+ const container=document.getElementById('productsList');
+ if(!carrito.length){container.innerHTML='<div class="muted" style="padding:18px 0">Tu carrito está vacío. <a href="index.html" style="color:#129984;font-weight:bold">Volver a productos</a></div>';return;}
+ container.innerHTML=carrito.map(item=>{
+  const precio=Number(item.precio)||0, cantidad=Math.max(1,Number(item.cantidad)||1), imgUrl=imagenCheckout(item), imagen=imgUrl?`<img src="${esc(imgUrl)}" alt="${esc(item.nombre)}" onerror="this.style.display='none'">`:'<span>Imagen<br>del producto</span>';
+  return `<div class="product-item"><div class="product-placeholder">${imagen}</div><div><div class="product-category">${esc(item.categoria||'Producto')}</div><div class="product-name">${esc(item.nombre)}</div><div class="product-price">${formatSoles(precio)} cada uno</div>${item.promoId&&Number(item.precioOriginal)>precio?`<div class="product-price"><s>Antes ${formatSoles(item.precioOriginal)}</s></div>`:''}<div class="quantity"><button type="button" aria-label="Disminuir" onclick="cambiarCantidad(${Number(item.id)},-1)">−</button><span>${cantidad}</span><button type="button" aria-label="Aumentar" onclick="cambiarCantidad(${Number(item.id)},1)">+</button><button type="button" class="delete-product" onclick="eliminarProducto(${Number(item.id)})">Eliminar</button></div>${requiereReceta(item)?'<div class="recipe-warning"><strong>Este producto requiere receta médica.</strong> Se debe adjuntar una imagen de receta antes de confirmar.</div>':''}${item.catalogDisabled?'<div class="recipe-warning"><strong>Este producto ya no está publicado en el catálogo.</strong> Elimínalo del carrito para continuar.</div>':''}</div><div class="product-total">${formatSoles(precio*cantidad)}</div></div>`;
+ }).join('');
+}
+function mostrarUsuario(){
+ const container=document.getElementById('customerInfo');
+ if(!usuario){container.innerHTML='<p class="muted">No hay datos de entrega. <a href="login.html" style="color:#129984;font-weight:bold">Registrar datos</a>.</p>';return;}
+ const u=usuario.ubicacion||{};
+ const fields=[['Cliente',`${usuario.nombres||''} ${usuario.apellidos||''}`.trim()||'-'],['Teléfono',usuario.telefono||'-'],['Departamento',u.departamento||'-'],['Ciudad',u.ciudad||'-'],['Dirección',u.direccion||'-'],['Referencia',u.referencia||'-']];
+ container.innerHTML=fields.map(([label,value],i)=>`<div class="info-box ${i>=4?'full':''}"><div class="info-label">${label}</div><div class="info-value">${esc(value)}</div></div>`).join('');
+}
+function calcularTotales(){const subtotal=carrito.reduce((sum,item)=>sum+(Number(item.precio)||0)*(Math.max(1,Number(item.cantidad)||1)),0);const envio=0;document.getElementById('subtotal').textContent=formatSoles(subtotal);document.getElementById('shipping').textContent=formatSoles(envio);document.getElementById('total').textContent=formatSoles(subtotal+envio);return subtotal+envio;}
+function guardarCarrito(){localStorage.setItem(STORAGE.cart,JSON.stringify(carrito));}
+function cambiarCantidad(id,cambio){const item=carrito.find(p=>Number(p.id)===Number(id));if(!item)return;item.cantidad=(Number(item.cantidad)||1)+cambio;if(item.cantidad<=0)carrito=carrito.filter(p=>Number(p.id)!==Number(id));guardarCarrito();mostrarProductos();calcularTotales();}
+function eliminarProducto(id){carrito=carrito.filter(p=>Number(p.id)!==Number(id));guardarCarrito();mostrarProductos();calcularTotales();}
+function showMessage(text,type='error'){const el=document.getElementById('pageMessage');el.textContent=text;el.className='message '+type;el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function namePayment(value){return ({tarjeta:'Tarjeta (demostración, no cobrada)',yape:'Yape (pago por coordinar)',plin:'Plin (pago por coordinar)',efectivo:'Efectivo contra entrega'})[value]||value;}
+document.querySelectorAll('.payment-option').forEach(label=>label.addEventListener('click',()=>{document.querySelectorAll('.payment-option').forEach(x=>x.classList.remove('selected'));label.classList.add('selected');const radio=label.querySelector('input');radio.checked=true;metodoSeleccionado=radio.value;const messages={tarjeta:'💳 Demostración: no se realizará ningún cobro. No ingreses datos de tarjeta reales.',yape:'📱 El pedido quedará registrado, pero el pago deberá coordinarse por separado.',plin:'📲 El pedido quedará registrado, pero el pago deberá coordinarse por separado.',efectivo:'💵 El pedido quedará registrado como pago en efectivo pendiente al recibir.'};document.getElementById('paymentMessage').textContent=messages[metodoSeleccionado];}));
+function generarCodigo(){let code;const existing=getPedidos();do{const n=Math.floor(10000000+Math.random()*90000000);code=`FS-${new Date().getFullYear()}-${n}`;}while(existing.some(p=>p.codigo===code));return code;}
+async function confirmarPedido(){
+ sincronizarCarritoConCatalogo();
+ if(!carrito.length){showMessage('Tu carrito está vacío.');return;}
+ const noDisponibles=carrito.some(p=>p.catalogDisabled);if(noDisponibles){showMessage('Hay productos eliminados u ocultos del catálogo. Elimínalos del carrito antes de confirmar el pedido.');return;}
+ const conReceta=carrito.some(requiereReceta);if(conReceta&&!recipeData()){showMessage('Hay productos que requieren receta, pero no encontramos una imagen guardada. Abre Iniciar sesión, adjunta la imagen y vuelve a confirmar.');return;}
+ const total=calcularTotales();const now=new Date();const codigo=generarCodigo();const pedidos=getPedidos();
+ const pedido={id:`${now.getTime()}-${Math.random().toString(36).slice(2,8)}`,codigo,fecha:now.toLocaleString('es-PE'),fechaISO:now.toISOString(),productos:carrito.map(p=>({id:p.id,nombre:p.nombre,categoria:p.categoria,precio:Number(p.precio)||0,precioOriginal:Number(p.precioOriginal)||0,cantidad:Math.max(1,Number(p.cantidad)||1),imagen:p.promoId?'':(p.imagen||''),promoId:p.promoId||'',receta:requiereReceta(p)})),usuario:JSON.parse(JSON.stringify(usuario)),total,pago:metodoSeleccionado,metodoPago:namePayment(metodoSeleccionado),pagoEstado:'Pendiente / demostración',estado:0,historial:[{estado:0,fecha:now.toLocaleString('es-PE'),fechaISO:now.toISOString(),mensaje:'Pedido registrado en FarmaSalud.'}]};
+ const btn=document.getElementById('confirmButton');btn.disabled=true;btn.textContent='REGISTRANDO PEDIDO…';
+ try{
+   if(window.FarmaCloud&&FarmaCloud.isConfigured()) await FarmaCloud.createOrder(pedido);
+   pedidos.push(pedido);localStorage.setItem(STORAGE.orders,JSON.stringify(pedidos));localStorage.setItem(STORAGE.legacyOrder,JSON.stringify(pedido));localStorage.setItem(STORAGE.cart,JSON.stringify([]));carrito=[];pedidoCreado=codigo;
+   sessionStorage.setItem('farmaSeguimientoTelefono',String(usuario?.telefono||''));
+   document.getElementById('checkoutPage').classList.add('hidden');document.getElementById('confirmationPage').classList.remove('hidden');document.getElementById('orderCode').textContent=codigo;document.getElementById('paymentConfirmed').textContent='Medio seleccionado: '+namePayment(metodoSeleccionado)+'. El pago no se procesa en este prototipo.';document.getElementById('surveyPrompt').hidden=!carritoOrderHadMedication(pedido);window.scrollTo({top:0,behavior:'smooth'});
+ }catch(e){console.error(e);showMessage('No se pudo guardar el pedido compartido. Comprueba la configuración de Supabase y vuelve a intentarlo. '+(e.message||''));btn.disabled=false;btn.textContent='CONFIRMAR PEDIDO';}
+}
+function carritoOrderHadMedication(order){return Array.isArray(order?.productos)&&order.productos.some(p=>p.categoria==='medicamentos');}
+function irSeguimiento(){if(pedidoCreado)window.location.href='seguimiento.html?codigo='+encodeURIComponent(pedidoCreado);else window.location.href='seguimiento.html';}
+function cargarTodo(){mostrarProductos();mostrarUsuario();calcularTotales();}
+async function cargarCatalogoCompartidoAntesDelCheckout(){
+ try{if(window.FarmaCloud&&FarmaCloud.isConfigured()){const state=await FarmaCloud.getState();if(state&&state.initialized){localStorage.setItem('farmaSaludCatalogo',JSON.stringify(state.products||[]));localStorage.setItem('farmaSaludPromociones',JSON.stringify(state.promotions||[]));}}}catch(e){console.warn('No se pudo actualizar el catálogo compartido antes del checkout.',e);}
+ sincronizarCarritoConCatalogo();
+ if(!usuario){document.getElementById('confirmButton').disabled=true;document.getElementById('confirmButton').style.opacity='.65';alert('Debes registrar tus datos antes de finalizar el pedido.');window.location.href='login.html';}else{cargarTodo();}
+}
+
+cargarCatalogoCompartidoAntesDelCheckout();
+</script>
+</body>
+</html>
