@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Iniciar sesión | FarmaSalud</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+:root{
+    --turquesa:#18B7A0;
+    --turquesa-dark:#129984;
+    --azul:#0B2A43;
+    --azul-light:#123B5A;
+    --blanco:#ffffff;
+    --gris:#667781;
+    --fondo:#F4FAF9;
+    --borde:#DCEBE8;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 20%,rgba(24,183,160,.12),transparent 30%),
+        radial-gradient(circle at 90% 80%,rgba(11,42,67,.10),transparent 30%),
+        var(--fondo);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+.login-container{
+    width:100%;
+    max-width:1150px;
+    background:white;
+    border-radius:28px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    box-shadow:0 25px 70px rgba(11,42,67,.15);
+}
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+.info{
+    background:
+        linear-gradient(145deg,
+        var(--azul) 0%,
+        #123B5A 45%,
+        var(--turquesa) 100%);
+    color:white;
+    padding:55px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.info::before{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+    top:-100px;
+    right:-100px;
+}
+
+.info::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(24,183,160,.18);
+    bottom:-100px;
+    left:-80px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-bottom:55px;
+    position:relative;
+    z-index:2;
+}
+
+.logo-icon{
+    width:62px;
+    height:62px;
+    background:white;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.logo-icon img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:4px;
+}
+
+.logo h1{
+    font-size:29px;
+    font-weight:800;
+}
+
+/* =========================
+   TEXTO
+========================= */
+
+.info h2{
+    font-size:43px;
+    line-height:1.08;
+    margin-bottom:20px;
+    position:relative;
+    z-index:2;
+}
+
+.info p{
+    font-size:16px;
+    line-height:1.7;
+    max-width:400px;
+    color:rgba(255,255,255,.9);
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   BENEFICIOS
+========================= */
+
+.benefits{
+    margin-top:38px;
+    position:relative;
+    z-index:2;
+}
+
+.benefit{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+    font-size:14px;
+}
+
+.check{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:bold;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.form-section{
+    padding:45px 50px;
+    max-height:92vh;
+    overflow-y:auto;
+}
+
+.form-section::-webkit-scrollbar{
+    width:6px;
+}
+
+.form-section::-webkit-scrollbar-thumb{
+    background:var(--turquesa);
+    border-radius:10px;
+}
+
+.form-section h2{
+    color:var(--azul);
+    font-size:30px;
+    margin-bottom:7px;
+}
+
+.subtitle{
+    color:var(--gris);
+    margin-bottom:27px;
+    font-size:14px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+label{
+    display:block;
+    color:var(--azul);
+    font-weight:700;
+    margin-bottom:7px;
+    font-size:13px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px 15px;
+    border:1.5px solid #d9e6e4;
+    border-radius:11px;
+    outline:none;
+    font-size:14px;
+    color:var(--azul);
+    background:white;
+    transition:.2s;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#9aa9ae;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--turquesa);
+    box-shadow:0 0 0 4px rgba(24,183,160,.10);
+}
+
+textarea{
+    min-height:75px;
+    resize:vertical;
+}
+
+/* =========================
+   UBICACIÓN
+========================= */
+
+.location-box{
+    background:#F4FBF9;
+    border:1px solid #D8ECE8;
+    border-radius:16px;
+    padding:19px;
+    margin-top:3px;
+}
+
+.location-title{
+    font-weight:800;
+    color:var(--azul);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.location-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+/* =========================
+   RECETA
+========================= */
+
+.prescription-box{
+    margin-top:3px;
+    background:#FFFAF1;
+    border:1px solid #EED9B4;
+    border-radius:16px;
+    padding:19px;
+}
+
+.prescription-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#795316;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.prescription-text{
+    color:#725D3B;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.file-label{
+    background:white;
+    border:1.5px dashed #D39B42;
+    border-radius:11px;
+    padding:15px;
+    text-align:center;
+    cursor:pointer;
+    display:block;
+    color:#795316;
+    font-weight:700;
+    transition:.2s;
+}
+
+.file-label:hover{
+    background:#FFF8E9;
+    transform:translateY(-1px);
+}
+
+.file-label input{
+    display:none;
+}
+
+.file-name{
+    margin-top:9px;
+    font-size:12px;
+    color:#667;
+    text-align:center;
+}
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.terms{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    margin:18px 0;
+}
+
+.terms input{
+    width:auto;
+    margin-top:3px;
+    accent-color:var(--turquesa);
+}
+
+.terms label{
+    font-weight:normal;
+    font-size:12px;
+    color:#777;
+    line-height:1.5;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.btn-login{
+    width:100%;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    background:linear-gradient(90deg,var(--turquesa),var(--turquesa-dark));
+    color:white;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 8px 18px rgba(24,183,160,.18);
+}
+
+.btn-login:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(24,183,160,.28);
+}
+
+.btn-login:active{
+    transform:translateY(0);
+}
+
+/* =========================
+   VOLVER
+========================= */
+
+.back{
+    text-align:center;
+    margin-top:17px;
+}
+
+.back a{
+    color:var(--turquesa-dark);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+}
+
+.back a:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   SEGURIDAD
+========================= */
+
+.security{
+    margin-top:18px;
+    padding:12px;
+    background:#F2FAF8;
+    border:1px solid #DDEEEA;
+    border-radius:10px;
+    color:#54717C;
+    font-size:11px;
+    text-align:center;
+}
+
+/* =========================
+   ERRORES
+========================= */
+
+.error{
+    display:none;
+    color:#D62828;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    body{
+        align-items:flex-start;
+        padding:15px;
+    }
+
+    .login-container{
+        grid-template-columns:1fr;
+        margin:10px 0;
+    }
+
+    .info{
+        padding:35px;
+    }
+
+    .logo{
+        margin-bottom:30px;
+    }
+
+    .info h2{
+        font-size:36px;
+    }
+
+    .benefits{
+        display:none;
+    }
+
+    .form-section{
+        max-height:none;
+        overflow:visible;
+    }
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:8px;
+    }
+
+    .login-container{
+        border-radius:20px;
+    }
+
+    .info{
+        padding:28px 24px;
+    }
+
+    .logo-icon{
+        width:52px;
+        height:52px;
+    }
+
+    .logo h1{
+        font-size:24px;
+    }
+
+    .info h2{
+        font-size:32px;
+    }
+
+    .form-section{
+        padding:30px 22px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .location-row{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* Accesos rápidos de cuentas de demostración */
+.quick-access{background:#f2faf8;border:1px solid #cfeae4;border-radius:14px;padding:17px 18px;margin:0 0 26px}
+.quick-access h3{color:var(--azul);font-size:18px;margin-bottom:6px}
+.quick-access>p{color:var(--gris);font-size:12px;line-height:1.55;margin-bottom:13px}
+.quick-access .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick-access label{display:block;color:var(--azul);font-size:12px;font-weight:700;margin-bottom:6px}
+.quick-access input{width:100%;padding:11px;border:1px solid #cbded9;border-radius:9px;font-size:14px;margin-bottom:10px}
+.quick-access .quick-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 12px}
+.quick-access .quick-buttons button{background:#fff;color:var(--turquesa-dark);border:1px solid #cde8e3;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.quick-access .quick-submit{background:var(--turquesa);color:#fff;border:0;border-radius:9px;padding:12px;width:100%;font-weight:800;cursor:pointer}
+.quick-access .quick-status{display:none;font-size:12px;color:#a23832;margin-top:9px;line-height:1.5}
+.quick-access .quick-note{font-size:10px;color:#6a7b83;margin:10px 0 0}
+.quick-access-separator{display:flex;align-items:center;gap:10px;color:#7a8b92;font-size:11px;margin:19px 0}
+.quick-access-separator:before,.quick-access-separator:after{content:"";height:1px;background:#e1eeeb;flex:1}
+@media(max-width:600px){.quick-access .quick-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+<!-- =================================
+     PARTE IZQUIERDA
+================================= -->
+
+<section class="info">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <img src="assets/img/logo.png" alt="Logo FarmaSalud">
+        </div>
+
+        <h1>FarmaSalud</h1>
+
+    </div>
+
+    <h2>
+        Tu salud,<br>
+        más cerca.
+    </h2>
+
+    <p>
+        Registra tus datos para consultar tu carrito,
+        organizar tu pedido y recibirlo en la dirección
+        indicada.
+    </p>
+
+    <div class="benefits">
+
+        <div class="benefit">
+            <div class="check">✓</div>
+            <span>Carrito personalizado</span>
+        </div>
+
+        <div class="benefit">
+            <div class="check">✓</div>
+            <span>Datos de entrega</span>
+        </div>
+
+        <div class="benefit">
+            <div class="check">✓</div>
+            <span>Control de productos con receta</span>
+        </div>
+
+        <div class="benefit">
+            <div class="check">✓</div>
+            <span>Proceso de pedido organizado</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     FORMULARIO
+================================= -->
+
+<section class="form-section">
+
+<h2>Crear / iniciar sesión</h2>
+
+<p class="subtitle">
+Completa tus datos para continuar al carrito o utiliza una cuenta de demostración.
+</p>
+
+<section class="quick-access" aria-labelledby="quickAccessTitle">
+  <h3 id="quickAccessTitle">Acceso rápido a cuentas de prueba</h3>
+  <p>Usa una de las cuentas de demostración. No introduzcas datos personales reales en esta prueba.</p>
+  <form id="quickAccessForm">
+    <div class="quick-grid">
+      <div><label for="quickUsername">Usuario</label><input id="quickUsername" name="username" autocomplete="username" value="CLIENTEPRUEBA" required></div>
+      <div><label for="quickPassword">Contraseña</label><input id="quickPassword" name="password" type="password" autocomplete="current-password" value="CLIENTE" required></div>
+    </div>
+    <div class="quick-buttons">
+      <button type="button" data-demo-account="admin">Usar ADMIN</button>
+      <button type="button" data-demo-account="client">Usar CLIENTEPRUEBA</button>
+    </div>
+    <button class="quick-submit" type="submit">Iniciar sesión rápida</button>
+    <div class="quick-status" id="quickAccessStatus" role="alert"></div>
+    <p class="quick-note">Cuentas locales de demostración: ADMIN / ADMIN2026 y CLIENTEPRUEBA / CLIENTE. No uses estas claves en una tienda pública.</p>
+  </form>
+</section>
+<div class="quick-access-separator">O continúa con tus datos de compra</div>
+<form id="loginForm">
+
+<div class="form-grid">
+
+<!-- NOMBRES -->
+
+<div class="form-group">
+
+<label for="nombres">
+Nombres *
+</label>
+
+<input
+    type="text"
+    id="nombres"
+    placeholder="Ej. Camilo"
+    required
+>
+
+</div>
+
+
+<!-- APELLIDOS -->
+
+<div class="form-group">
+
+<label for="apellidos">
+Apellidos *
+</label>
+
+<input
+    type="text"
+    id="apellidos"
+    placeholder="Ej. Contreras"
+    required
+>
+
+</div>
+
+
+<!-- TELEFONO -->
+
+<div class="form-group">
+
+<label for="telefono">
+Número de teléfono *
+</label>
+
+<input
+    type="tel"
+    id="telefono"
+    placeholder="Ej. 943032119"
+    maxlength="9"
+    required
+>
+
+<div
+    class="error"
+    id="phoneError"
+>
+Número de teléfono inválido.
+</div>
+
+</div>
+
+
+<!-- DNI -->
+
+<div class="form-group">
+
+<label for="dni">
+DNI *
+</label>
+
+<input
+    type="text"
+    id="dni"
+    placeholder="Ej. 12345678"
+    maxlength="8"
+    required
+>
+
+<div
+    class="error"
+    id="dniError"
+>
+El DNI debe tener 8 dígitos.
+</div>
+
+</div>
+
+
+<!-- UBICACIÓN -->
+
+<div class="form-group full">
+
+<div class="location-box">
+
+<div class="location-title">
+📍 Dirección de entrega
+</div>
+
+<div class="location-row">
+
+<div>
+
+<label for="departamento">
+Departamento *
+</label>
+
+<select id="departamento" required>
+
+<option value="">
+Seleccionar
+</option>
+
+<option>
+Junín
+</option>
+
+<option>
+Lima
+</option>
+
+<option>
+Cusco
+</option>
+
+<option>
+Arequipa
+</option>
+
+<option>
+La Libertad
+</option>
+
+<option>
+Piura
+</option>
+
+<option>
+Otro
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label for="ciudad">
+Ciudad *
+</label>
+
+<input
+    type="text"
+    id="ciudad"
+    placeholder="Ej. Huancayo"
+    required
+>
+
+</div>
+
+</div>
+
+<div style="margin-top:12px;">
+
+<label for="direccion">
+Dirección *
+</label>
+
+<input
+    type="text"
+    id="direccion"
+    placeholder="Av., Jr., calle, número..."
+    required
+>
+
+</div>
+
+<div style="margin-top:12px;">
+
+<label for="referencia">
+Referencia
+</label>
+
+<textarea
+    id="referencia"
+    placeholder="Ej. Cerca del parque..."
+></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RECETA -->
+
+<div class="form-group full">
+
+<div class="prescription-box">
+
+<div class="prescription-title">
+
+<span>📄</span>
+
+<span>
+Receta médica
+</span>
+
+</div>
+
+<p class="prescription-text">
+
+Este apartado se utilizará únicamente cuando
+el producto seleccionado requiera receta médica.
+En ese caso, será necesario adjuntar una imagen
+legible de la receta para continuar con el pedido.
+
+</p>
+
+<label class="file-label">
+
+📷 Adjuntar imagen de receta
+
+<input
+    type="file"
+    id="receta"
+    accept="image/jpeg,image/png,image/webp"
+>
+
+</label>
+
+<div
+    class="file-name"
+    id="fileName"
+>
+No se ha seleccionado ningún archivo.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TÉRMINOS -->
+
+<div class="terms">
+
+<input
+    type="checkbox"
+    id="terms"
+    required
+>
+
+<label for="terms">
+
+Confirmo que los datos ingresados son correctos
+y acepto continuar con el proceso de pedido.
+
+</label>
+
+</div>
+
+
+<button
+    type="submit"
+    class="btn-login"
+>
+CONTINUAR AL CARRITO →
+</button>
+
+</form>
+
+
+<div class="back">
+
+<a href="index.html">
+← Volver a FarmaSalud
+</a>
+
+</div>
+
+
+<div class="security">
+
+🔒 Los datos se utilizan para el proceso de pedido
+del prototipo de FarmaSalud.
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+/* FarmaSalud: registro local de datos para el prototipo. No se envía información a internet. */
+const quickForm = document.getElementById('quickAccessForm');
+const quickStatus = document.getElementById('quickAccessStatus');
+document.querySelectorAll('[data-demo-account]').forEach(button => button.addEventListener('click', () => {
+  const admin = button.dataset.demoAccount === 'admin';
+  document.getElementById('quickUsername').value = admin ? 'ADMIN' : 'CLIENTEPRUEBA';
+  document.getElementById('quickPassword').value = admin ? 'ADMIN2026' : 'CLIENTE';
+  quickStatus.style.display = 'none';
+}));
+quickForm.addEventListener('submit', event => {
+  event.preventDefault();
+  quickStatus.style.display = 'block';
+  const username = document.getElementById('quickUsername').value.trim().toUpperCase();
+  const password = document.getElementById('quickPassword').value;
+  if (username === 'ADMIN' && password === 'ADMIN2026') {
+    sessionStorage.setItem('farmaSaludAdminAutenticado', 'yes');
+    sessionStorage.setItem('farmaSaludCuentaDemo', 'ADMIN');
+    localStorage.setItem('farmaSaludCuentaDemo', 'ADMIN');
+    quickStatus.style.color = '#129984';
+    quickStatus.textContent = 'Acceso de administrador validado. Abriendo el panel…';
+    window.location.href = 'admin.html';
+    return;
+  }
+  if (username === 'CLIENTEPRUEBA' && password === 'CLIENTE') {
+    const demoUser = {
+      nombres:'Cliente', apellidos:'Prueba', telefono:'999999999', dni:'00000000',
+      ubicacion:{departamento:'Junín',ciudad:'Huancayo',direccion:'Dirección de prueba',referencia:'Cuenta de demostración'},
+      sesionActiva:true, cuentaDemo:'CLIENTEPRUEBA'
+    };
+    localStorage.setItem('farmaSaludUsuario', JSON.stringify(demoUser));
+    localStorage.setItem('farmaSaludCuentaDemo', 'CLIENTEPRUEBA');
+    sessionStorage.setItem('farmaSaludCuentaDemo', 'CLIENTEPRUEBA');
+    quickStatus.style.color = '#129984';
+    quickStatus.textContent = 'Acceso de cliente validado. Abriendo FarmaSalud…';
+    window.location.href = 'index.html';
+    return;
+  }
+  quickStatus.style.color = '#a23832';
+  quickStatus.textContent = 'Usuario o contraseña incorrectos. Revisa las credenciales de demostración.';
+});
+
+const recetaInput = document.getElementById("receta");
+const fileName = document.getElementById("fileName");
+const form = document.getElementById("loginForm");
+const MAX_RECETA_BYTES = 1024 * 1024; // 1 MB para no llenar el almacenamiento local.
+
+recetaInput.addEventListener("change", function () {
+    const archivo = this.files && this.files[0];
+    if (!archivo) {
+        fileName.textContent = "No se ha seleccionado ningún archivo.";
+        return;
+    }
+    if (!/^image\/(jpeg|png|webp)$/.test(archivo.type)) {
+        alert("Selecciona una imagen JPG, PNG o WEBP.");
+        this.value = "";
+        fileName.textContent = "No se ha seleccionado ningún archivo.";
+        return;
+    }
+    if (archivo.size > MAX_RECETA_BYTES) {
+        alert("La imagen debe pesar como máximo 1 MB en este prototipo local.");
+        this.value = "";
+        fileName.textContent = "No se ha seleccionado ningún archivo.";
+        return;
+    }
+    fileName.textContent = "✓ Imagen seleccionada: " + archivo.name + " (se guardará solo en este navegador).";
+});
+
+function leerArchivoComoDataURL(archivo) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error("No se pudo leer la imagen."));
+        reader.readAsDataURL(archivo);
+    });
+}
+
+form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const nombres = document.getElementById("nombres").value.trim();
+    const apellidos = document.getElementById("apellidos").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const dni = document.getElementById("dni").value.trim();
+    const departamento = document.getElementById("departamento").value;
+    const ciudad = document.getElementById("ciudad").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
+    const referencia = document.getElementById("referencia").value.trim();
+    const phoneError = document.getElementById("phoneError");
+    const dniError = document.getElementById("dniError");
+    phoneError.style.display = "none";
+    dniError.style.display = "none";
+
+    if (!/^\d{9}$/.test(telefono)) {
+        phoneError.style.display = "block";
+        return;
+    }
+    if (!/^\d{8}$/.test(dni)) {
+        dniError.style.display = "block";
+        return;
+    }
+
+    const usuario = {
+        nombres, apellidos, telefono, dni,
+        ubicacion: { departamento, ciudad, direccion, referencia },
+        sesionActiva: true
+    };
+
+    try {
+        localStorage.setItem("farmaSaludUsuario", JSON.stringify(usuario));
+        const archivo = recetaInput.files && recetaInput.files[0];
+        if (archivo) {
+            const dataUrl = await leerArchivoComoDataURL(archivo);
+            localStorage.setItem("farmaSaludReceta", JSON.stringify({
+                nombre: archivo.name,
+                tipo: archivo.type,
+                tamano: archivo.size,
+                dataUrl
+            }));
+        } else {
+            // Conserva una receta que ya se adjuntó al elegir un producto que la exige.
+            // Si no existe una receta nueva, no se borra la que ya está guardada en este prototipo local.
+        }
+        window.location.href = "carrito.html";
+    } catch (error) {
+        console.error(error);
+        alert("No se pudieron guardar los datos en este navegador. Prueba con una imagen más pequeña y revisa el espacio de almacenamiento del navegador.");
+    }
+});
+</script>
+
+</body>
+</html>
