@@ -5,7 +5,7 @@
  */
 window.FARMASALUD_SUPABASE_CONFIG = {
   url: 'https://pdkdeojpyivlphjkqgpz.supabase.co',
-  publishableKey: 'PEGA_AQUI_TU_PUBLISHABLE_KEY',
-  adminEmail: 'CAMBIA_POR_TU_CORREO_ADMIN',
-  clientEmail: 'CAMBIA_POR_TU_CORREO_CLIENTE'
+  publishableKey: 'sb_publishable_DFUFccCWKpxoftMqrZuYAw_qEiGIR-Y',
+  adminEmail: 'Camilo4444xd@gmail.com',
+  clientEmail: 'Kael26@gmail.com'
 };
